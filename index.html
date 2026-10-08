@@ -154,6 +154,15 @@ select.mid-select{font:600 16px var(--body);color:var(--ink);background:var(--bg
 .fl-grid label{display:grid;gap:3px;font-size:13px;font-weight:600;color:var(--muted)}
 .fl-grid select,.fl-grid input{font:16px var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:7px;padding:8px 10px;width:100%}
 .fl-notes{display:grid;gap:8px}
+.about{background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--r);padding:16px 18px;display:grid;gap:10px}
+.about-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.about .eyebrow{color:var(--accent)}
+.about-close,.about-open{all:unset;cursor:pointer;font:600 14px var(--body);color:var(--accent)}
+.about-open{justify-self:start;text-decoration:underline}
+.about-lead{font-size:17px;max-width:70ch}
+.about-steps{margin:0;padding-left:22px;display:grid;gap:4px;max-width:75ch}
+.about-steps b{color:var(--accent)}
+.about-note{font-size:14px;color:var(--muted);max-width:75ch}
 .clocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
 .clock{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:2px;min-width:0}
 .clock.here-clock{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
@@ -173,6 +182,22 @@ select.mid-select{font:600 16px var(--body);color:var(--ink);background:var(--bg
     </div>
     <div class="passport">DONNÉES VISA · <span id="dVisa">17.02.2026</span><br>MISES À JOUR · <span id="dBuilt">08.10.2026</span></div>
   </header>
+
+  <section class="about" id="about" aria-label="À quoi sert cette application">
+    <div class="about-head">
+      <span class="eyebrow">À quoi sert Mon Dossier Voyage ?</span>
+      <button class="about-close" id="aboutClose" type="button" aria-label="Masquer l'explication">Masquer ✕</button>
+    </div>
+    <p class="about-lead">Un outil gratuit pour préparer un voyage à l'étranger sans erreur ni intermédiaire douteux : il te dit s'il faut un visa, quels papiers réunir, où les obtenir et où déposer ta demande.</p>
+    <ol class="about-steps">
+      <li><b>Choisis</b> ta nationalité et ta destination, parmi 199 pays.</li>
+      <li><b>Vérifie</b> s'il faut un visa, une autorisation en ligne ou rien du tout.</li>
+      <li><b>Prépare</b> ton dossier : checklist, où obtenir chaque papier, lettre de motivation, ambassade compétente, vols.</li>
+      <li><b>Sur place</b>, retrouve l'ambassade de ton pays, les démarches d'arrivée et les numéros d'urgence.</li>
+    </ol>
+    <p class="about-note">Informations vérifiées et sourcées, mais les règles changent : confirme toujours sur le site officiel avant de payer. L'application n'est liée à aucune ambassade et ne garantit aucun visa.</p>
+  </section>
+  <button class="about-open" id="aboutOpen" type="button" hidden>À quoi sert cette application ?</button>
 
   <section class="picker" aria-label="Trajet">
     <div class="field">
@@ -1175,6 +1200,15 @@ function startGps(){state.gps=true;state.auto=false;$("#autoHere").checked=false
   const frl=v=>{const d=new Date(v);return isNaN(d)?v:d.toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"})};
   $("#dVisa").textContent=fr(meta.visa);$("#dBuilt").textContent=fr(meta.built);
   document.querySelectorAll("[data-date]").forEach(el=>{const k=el.getAttribute("data-date");if(meta[k])el.textContent=frl(meta[k])});
+})();
+
+/* ---------- Explanation card ---------- */
+(function(){
+  let hide=false;try{hide=localStorage.getItem("mdv_about")==="0"}catch(e){}
+  const a=$("#about"),o=$("#aboutOpen");
+  const set=h=>{a.hidden=h;o.hidden=!h;try{localStorage.setItem("mdv_about",h?"0":"1")}catch(e){}};
+  a.hidden=hide;o.hidden=!hide;
+  $("#aboutClose").onclick=()=>set(true);o.onclick=()=>set(false);
 })();
 
 fillSelects();
