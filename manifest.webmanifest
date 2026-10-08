@@ -1,6 +1,6 @@
 {
-  "name": "Mon Dossier Visa",
-  "short_name": "Dossier Visa",
+  "name": "Mon Dossier Voyage",
+  "short_name": "Dossier Voyage",
   "description": "Visa, ambassades, papiers, vols et démarches d'arrivée pour 199 pays.",
   "lang": "fr",
   "start_url": "./",

@@ -1,7 +1,7 @@
-// Mon Dossier Visa: offline support.
+// Mon Dossier Voyage: offline support.
 // Pages and data are served from the network when possible (so updates show up at once),
 // and from the cache when the phone is offline.
-const CACHE = "mdv-v1";
+const CACHE = "mdv-v2";
 const CORE = [
   "./", "index.html", "mentions-legales.html", "confidentialite.html", "manifest.webmanifest",
   "icons/icon-192.png", "icons/icon-512.png",
