@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Confidentialité · Mon Dossier Visa</title>
+<link rel="icon" href="icons/icon-192.png">
+<style>
+:root{--bg:#eef2f4;--surface:#fff;--ink:#14233a;--muted:#56657a;--line:#d5dde5;--accent:#0f6b5c;--warn:#8a5a00;--warn-soft:#fbefd5}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1622;--surface:#16212f;--ink:#e6edf5;--muted:#9aa9bb;--line:#2a3a4d;--accent:#4cc3a8;--warn:#f1c069;--warn-soft:#3a2f17;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;padding-inline:16px;padding-block:24px 48px}
+main{max-width:720px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px}
+h1{font-size:28px;margin:0 0 8px}h2{font-size:19px;margin:28px 0 6px}p,li{max-width:65ch}a{color:var(--accent);font-weight:600}
+.todo{background:var(--warn-soft);color:var(--warn);padding:2px 6px;border-radius:4px;font-weight:600}
+.muted{color:var(--muted)}
+button{font:700 15px system-ui,sans-serif;padding:10px 16px;border-radius:8px;border:0;background:var(--accent);color:var(--surface);cursor:pointer}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+<p><a href="./">← Retour à l'application</a></p>
+<h1>Confidentialité</h1>
+<p class="muted">Dernière mise à jour : 8 octobre 2026</p>
+
+<h2>En résumé</h2>
+<p>Mon Dossier Visa n'a pas de serveur ni de comptes utilisateurs. Ce que tu saisis (nom, profession, dates, cases cochées) reste dans le navigateur de ton appareil et n'est envoyé ni à l'éditeur ni à un tiers.</p>
+
+<h2>Ce qui est enregistré sur ton appareil</h2>
+<ul>
+<li>Tes choix de pays, l'onglet ouvert et l'état de tes checklists.</li>
+<li>Les champs de la lettre de motivation (nom, profession, employeur, ville, dates, but du voyage).</li>
+<li>Les données publiques du site (visas, ambassades, aéroports), gardées en cache pour fonctionner hors connexion.</li>
+</ul>
+<p>Ces informations sont stockées dans le stockage local du navigateur. Elles restent sur ton appareil jusqu'à ce que tu les effaces.</p>
+
+<h2>Position et fuseau horaire</h2>
+<p>Le pays où tu te trouves est déduit du fuseau horaire de ton téléphone. Si tu actives le GPS, ta position est comparée sur ton appareil aux frontières des pays ; elle n'est ni enregistrée ni envoyée. Tu peux retirer l'autorisation à tout moment dans les réglages du navigateur.</p>
+
+<h2>Services tiers</h2>
+<ul>
+<li><strong>GitHub Pages</strong> (hébergeur) peut enregistrer l'adresse IP des visiteurs pour la sécurité du service, selon sa propre politique de confidentialité.</li>
+<li><strong>Google Fonts</strong> fournit les polices du site : ton navigateur contacte les serveurs de Google pour les télécharger.</li>
+<li><strong>Liens externes</strong> (Google Maps, comparateurs de vols, sites officiels) : en cliquant, tu quittes le site et la politique de confidentialité du site visité s'applique.</li>
+</ul>
+<p>Le site n'utilise ni cookie publicitaire, ni outil de mesure d'audience.</p>
+
+<h2>Tes droits</h2>
+<p>Au Togo, la loi n° 2019-014 du 29 octobre 2019 relative à la protection des données à caractère personnel s'applique, sous le contrôle de l'Instance de protection des données à caractère personnel (IPDCP). Comme aucune donnée personnelle n'est collectée par l'éditeur, tu exerces ton droit d'effacement directement avec le bouton ci-dessous. Pour toute question : <span class="todo">[adresse e-mail]</span>.</p>
+<p><button type="button" id="wipe">Effacer mes données sur cet appareil</button></p>
+<p class="muted" id="msg" role="status"></p>
+</main>
+<script>
+document.getElementById("wipe").onclick=async()=>{
+  const msg=document.getElementById("msg");
+  try{["dv2_state","dv2_checks","dv_form","dv_state","dv_checks"].forEach(k=>localStorage.removeItem(k))}catch(e){}
+  try{if(window.caches){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}}catch(e){}
+  msg.textContent="Tes données ont été effacées de cet appareil.";
+};
+</script>
+</body>
+</html>

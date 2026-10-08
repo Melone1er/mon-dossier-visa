@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Faut-il un visa ? Vérifie les exigences entre 199 pays, prépare ton dossier pas à pas, trouve les ambassades, les vols et les démarches à l'arrivée.">
+<meta name="theme-color" content="#0f6b5c">
+<meta property="og:title" content="Mon Dossier Visa">
+<meta property="og:description" content="Visa, ambassades, papiers, vols et démarches d'arrivée pour 199 pays.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="icons/icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Mon Dossier Visa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: an app column — two country menus on top, a verdict stamp, then guide (steps) beside a side panel (progress, passport reach, letter, assistant); stacks on phones */
+:root{
+  --bg:#eef2f4; --surface:#ffffff; --ink:#14233a; --muted:#56657a; --line:#d5dde5;
+  --accent:#0f6b5c; --accent-soft:#dcefe9; --stamp:#b3322b; --stamp-soft:#f8e3e1; --warn:#8a5a00; --warn-soft:#fbefd5;
+  --info:#24508f; --info-soft:#e1eaf7;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Source Sans 3",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1622; --surface:#16212f; --ink:#e6edf5; --muted:#9aa9bb; --line:#2a3a4d;
+  --accent:#4cc3a8; --accent-soft:#163a35; --stamp:#f0837b; --stamp-soft:#3a1f1f; --warn:#f1c069; --warn-soft:#3a2f17;
+  --info:#8fb4ee; --info-soft:#1c2b44; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1622; --surface:#16212f; --ink:#e6edf5; --muted:#9aa9bb; --line:#2a3a4d;
+  --accent:#4cc3a8; --accent-soft:#163a35; --stamp:#f0837b; --stamp-soft:#3a1f1f; --warn:#f1c069; --warn-soft:#3a2f17;
+  --info:#8fb4ee; --info-soft:#1c2b44; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);padding-inline:16px;padding-block:20px 48px}
+.wrap{max-width:1120px;margin:0 auto;display:grid;gap:24px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:22px;font-weight:800}
+h3{font-size:18px;font-weight:600}
+p{margin:0}
+a{color:var(--accent);font-weight:600}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.eyebrow{font:500 12px/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:16px}
+header .sub{color:var(--muted);max-width:62ch}
+.passport{font:500 13px/1.3 var(--mono);border:1.5px dashed var(--stamp);color:var(--stamp);padding:8px 12px;border-radius:6px;transform:rotate(-2deg)}
+.picker{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:end}
+@media (max-width:640px){.picker{grid-template-columns:minmax(0,1fr)}.swap{justify-self:start}}
+.field{display:grid;gap:6px;min-width:0}
+select.big-select{font:600 18px var(--body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:12px 14px;width:100%;cursor:pointer}
+select.big-select:hover{border-color:var(--accent)}
+.swap{all:unset;cursor:pointer;font:600 14px var(--body);padding:12px 14px;border-radius:var(--r);border:1.5px solid var(--line);background:var(--surface);text-align:center}
+.swap:hover{border-color:var(--accent)}
+.verdict{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+@media (max-width:640px){.verdict{grid-template-columns:minmax(0,1fr)}}
+.stampbox{font:800 15px/1.15 var(--display);text-transform:uppercase;letter-spacing:.04em;border:3px solid currentColor;border-radius:8px;padding:10px 14px;text-align:center;transform:rotate(-3deg);min-width:150px}
+.stampbox small{display:block;font:500 12px var(--mono);letter-spacing:.06em;margin-top:4px}
+.st-free{color:var(--accent)} .st-arr{color:var(--accent)} .st-eta{color:var(--info)} .st-evisa{color:var(--info)} .st-req{color:var(--warn)} .st-no{color:var(--stamp)} .st-self{color:var(--muted)}
+.verdict .what{display:grid;gap:6px;min-width:0}
+.cta{justify-self:start;display:inline-flex;align-items:center;gap:8px}
+.tab.tab-vols{border-color:var(--accent);color:var(--accent)}
+.verdict .what p{max-width:70ch}
+.motifs{display:flex;flex-wrap:wrap;gap:8px}
+.motif{all:unset;cursor:pointer;font-weight:600;font-size:15px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.motif[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+@media (max-width:900px){.main{grid-template-columns:minmax(0,1fr)}}
+.guide{display:grid;gap:16px;min-width:0}
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:8px}
+.summary .where{color:var(--muted);font-size:15px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px 16px 60px;position:relative;display:grid;gap:10px;min-width:0}
+.step::before{counter-increment:s;content:counter(s);position:absolute;left:16px;top:14px;width:30px;height:30px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font:600 15px var(--display)}
+.step.done::before{content:"✓";background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.step p{max-width:65ch}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.checks label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.checks input{margin-top:4px;width:18px;height:18px;accent-color:var(--accent);flex:none}
+.checks .done-text{color:var(--muted);text-decoration:line-through}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{display:inline-flex;gap:6px;align-items:center;font-size:14px;padding:5px 10px;border:1px solid var(--line);border-radius:6px;text-decoration:none;background:var(--bg)}
+.links a::after{content:"↗";font-weight:400}
+.links a.search{color:var(--muted)}
+.note{font-size:14px;padding:8px 12px;border-radius:6px;background:var(--warn-soft);color:var(--warn)}
+.note.scam,.note.alert{background:var(--stamp-soft);color:var(--stamp)}
+.note.good{background:var(--accent-soft);color:var(--accent)}
+.note strong{font-weight:700}
+.fee{font:500 13px var(--mono);color:var(--muted)}
+aside{display:grid;gap:16px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+@media (max-width:900px){aside{position:static}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:12px;min-width:0}
+.bar{height:10px;border-radius:999px;background:var(--bg);overflow:hidden;border:1px solid var(--line)}
+.bar span{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+@media (prefers-reduced-motion:reduce){.bar span{transition:none}}
+.big{font:800 34px/1 var(--display);font-variant-numeric:tabular-nums}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+button.btn{all:unset;cursor:pointer;font-weight:700;font-size:15px;padding:9px 14px;border-radius:8px;background:var(--accent);color:var(--surface);text-align:center}
+button.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+button.btn[disabled]{opacity:.5;cursor:default}
+.form{display:grid;gap:8px}
+.form label{display:grid;gap:3px;font-size:13px;font-weight:600;color:var(--muted)}
+input[type=text],input[type=date],textarea{font:16px var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:7px;padding:8px 10px;width:100%}
+textarea{resize:vertical;min-height:90px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.out{white-space:pre-wrap;font-size:15px;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:12px;max-height:340px;overflow:auto}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{all:unset;cursor:pointer;font-size:13px;font-weight:600;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.chip:hover{border-color:var(--accent)}
+.muted{color:var(--muted);font-size:14px}
+.reach{display:grid;gap:4px;font-variant-numeric:tabular-nums}
+.reach div{display:flex;justify-content:space-between;gap:8px;font-size:15px}
+.reach b{font-family:var(--mono);font-weight:500}
+details{font-size:14px}
+details summary{cursor:pointer;font-weight:600}
+details ul{margin:8px 0 0;padding-left:18px;max-height:260px;overflow:auto;display:grid;gap:2px}
+footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:14px;display:grid;gap:6px;max-width:80ch}
+.space{display:grid;gap:10px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tab{all:unset;cursor:pointer;flex:none;font:600 15px var(--body);padding:10px 16px;border-radius:8px;border:1.5px solid var(--line);border-bottom-width:3px;background:var(--surface);color:var(--muted);white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--ink);background:var(--surface)}
+.tab .n{font:500 12px var(--mono);margin-left:6px;color:var(--muted)}
+.res{display:grid;gap:12px;min-width:0}
+.res-head{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.card{display:grid;gap:6px;align-content:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;text-decoration:none;color:var(--ink);min-width:0}
+a.card:hover{border-color:var(--accent)}
+.card .ct{font-weight:700;font-size:16px;color:var(--accent)}
+.card .cd{font-size:14px;color:var(--ink)}
+.card .dom{font:500 12px var(--mono);color:var(--muted);overflow-wrap:anywhere}
+.badge{justify-self:start;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:4px 7px;border-radius:4px}
+.b-off{background:var(--accent-soft);color:var(--accent)}
+.b-priv{background:var(--info-soft);color:var(--info)}
+.b-web{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.b-info{background:var(--warn-soft);color:var(--warn)}
+.addr{display:grid;gap:1px;font-size:14px;font-weight:600}
+.src{display:flex;flex-wrap:wrap;gap:4px 12px;margin:2px 0 4px 28px;font-size:13px;color:var(--muted)}
+.src a{font-weight:600}
+.here{display:flex;flex-wrap:wrap;align-items:end;gap:10px 18px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:12px 14px}
+.here .field{min-width:220px;flex:0 1 320px}
+select.mid-select{font:600 16px var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+.auto{display:flex;gap:8px;align-items:center;font-weight:600;cursor:pointer;padding-bottom:8px}
+.auto input{width:18px;height:18px;accent-color:var(--accent)}
+.here .muted{flex:1 1 260px;padding-bottom:8px}
+.b-map{background:var(--stamp-soft);color:var(--stamp)}
+.fl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.fl-grid label{display:grid;gap:3px;font-size:13px;font-weight:600;color:var(--muted)}
+.fl-grid select,.fl-grid input{font:16px var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:7px;padding:8px 10px;width:100%}
+.fl-notes{display:grid;gap:8px}
+.clocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.clock{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:2px;min-width:0}
+.clock.here-clock{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.clock .lbl{font:500 12px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.clock .time{font:600 28px/1.1 var(--mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+.clock .date{font-size:14px;color:var(--ink)}
+.clock .off{font:500 12px var(--mono);color:var(--muted)}
+</style>
+
+<div class="wrap">
+  <p class="note" id="boot" role="status">Chargement des données…</p>
+  <header>
+    <div style="display:grid;gap:8px">
+      <span class="eyebrow">199 passeports · 199 destinations</span>
+      <h1>Mon Dossier Visa</h1>
+      <p class="sub">Choisis ta nationalité et ta destination. L'application te dit s'il faut un visa et te guide pour la demande. L'espace pays regroupe les rendez-vous, les facilités, les programmes, l'emploi et le logement.</p>
+    </div>
+    <div class="passport">DONNÉES VISA · <span id="dVisa">17.02.2026</span><br>MISES À JOUR · <span id="dBuilt">08.10.2026</span></div>
+  </header>
+
+  <section class="picker" aria-label="Trajet">
+    <div class="field">
+      <label class="eyebrow" for="origin">Ta nationalité (passeport)</label>
+      <select class="big-select" id="origin"></select>
+    </div>
+    <button class="swap" id="swap" type="button" aria-label="Inverser les deux pays">⇄ Inverser</button>
+    <div class="field">
+      <label class="eyebrow" for="dest">Ta destination</label>
+      <select class="big-select" id="dest"></select>
+    </div>
+  </section>
+
+  <section class="here" aria-label="Pays où tu te trouves">
+    <div class="field">
+      <label class="eyebrow" for="here">Tu es actuellement</label>
+      <select class="mid-select" id="here"></select>
+    </div>
+    <label class="auto" for="autoHere"><input type="checkbox" id="autoHere"> Détection automatique</label>
+    <button class="btn ghost" id="gpsBtn" type="button" hidden>Utiliser le GPS</button>
+    <p class="muted" id="hereInfo"></p>
+  </section>
+  <section class="clocks" id="clocks" aria-label="Heure et date"></section>
+  <p class="note good" id="arrival" hidden></p>
+
+  <section class="verdict" id="verdict" aria-live="polite"></section>
+
+  <section class="space" aria-label="Espace pays">
+    <span class="eyebrow" id="spaceTitle">Espace pays</span>
+    <div class="tabs" role="tablist" id="tabs"></div>
+  </section>
+
+  <div class="motifs" id="motifs"></div>
+
+  <div class="main">
+    <section class="guide" id="guidePane">
+      <div class="summary" id="summary"></div>
+      <ol class="steps" id="steps"></ol>
+    </section>
+    <section class="res" id="resPane" hidden></section>
+
+    <aside>
+      <div class="panel">
+        <span class="eyebrow">Ton avancement</span>
+        <div class="row" style="align-items:baseline;justify-content:space-between"><span class="big" id="pct">0 %</span><span class="muted" id="count"></span></div>
+        <div class="bar"><span id="barfill"></span></div>
+        <div class="row">
+          <button class="btn ghost" id="copyList" type="button">Copier ma checklist</button>
+          <button class="btn ghost" id="resetList" type="button">Tout décocher</button>
+        </div>
+        <p class="muted" id="copyMsg" aria-live="polite"></p>
+      </div>
+
+      <div class="panel">
+        <span class="eyebrow" id="reachTitle">Où aller avec ce passeport</span>
+        <div class="reach" id="reach"></div>
+        <details><summary>Voir les pays sans visa ou visa à l'arrivée</summary><ul id="reachList"></ul></details>
+      </div>
+
+      <div class="panel">
+        <span class="eyebrow">Lettre de motivation du voyage</span>
+        <p class="muted">Remplis, la lettre se met à jour. Relis-la et adapte-la avant de l'imprimer et de la signer.</p>
+        <div class="form">
+          <label>Nom complet<input type="text" id="f_nom" placeholder="Kossi AGBEKO"></label>
+          <div class="two">
+            <label>Profession<input type="text" id="f_job" placeholder="Commerçant"></label>
+            <label>Employeur / entreprise<input type="text" id="f_emp" placeholder="Ets Agbeko & Fils"></label>
+          </div>
+          <label>Ville de résidence<input type="text" id="f_ville" placeholder="Lomé"></label>
+          <div class="two">
+            <label>Départ<input type="date" id="f_dep"></label>
+            <label>Retour<input type="date" id="f_ret"></label>
+          </div>
+          <label>Ce que tu vas faire là-bas<input type="text" id="f_but" placeholder="rencontrer mes fournisseurs au salon de Canton"></label>
+          <label>Hôte ou hébergement<input type="text" id="f_hote" placeholder="Hôtel réservé à Guangzhou"></label>
+          <label>Ce qui te ramène chez toi<input type="text" id="f_lien" placeholder="ma boutique au Grand marché, ma femme et mes deux enfants"></label>
+        </div>
+        <div class="out" id="letter"></div>
+        <button class="btn" id="copyLetter" type="button">Copier la lettre</button>
+      </div>
+
+      <div class="panel" id="aiPanel">
+        <span class="eyebrow">Assistant</span>
+        <p class="muted">Pose une question sur ton dossier. L'assistant connaît ta nationalité, ta destination et ce que tu as déjà coché.</p>
+        <div class="chips" id="aiChips"></div>
+        <textarea id="aiQ" placeholder="Ex. : Mon passeport expire dans 5 mois, est-ce que ça passe ?"></textarea>
+        <div class="row">
+          <button class="btn" id="aiAsk" type="button">Demander</button>
+          <button class="btn ghost" id="aiStop" type="button" hidden>Arrêter</button>
+        </div>
+        <div class="out" id="aiOut" hidden></div>
+        <p class="muted" id="aiNote"></p>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p><a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></p>
+    <p><strong>Sources :</strong> exigences de visa entre 199 pays issues du jeu de données ouvert Passport Index (mise à jour du <span data-date="visa">17 février 2026</span>), corrigées le 8 octobre 2026 pour les changements vérifiés depuis : exemption de visa du Togo pour les ressortissants africains (18 mai 2026) et restrictions américaines (proclamations de juin et décembre 2025).</p>
+    <p><strong>Ambassades et consulats :</strong> 10 195 représentations de 202 pays (emplacements, sites, téléphones) issues de la base ouverte Database of Embassies, construite sur Wikidata (mise à jour du <span data-date="embassies">30 août 2024</span>), complétée par des adresses vérifiées le 8 octobre 2026. <strong>Numéros d'urgence :</strong> liste Wikipédia (2024). Appelle toujours avant de te déplacer.</p>
+    <p>Les règles changent sans préavis et dépendent aussi de ton pays de résidence et du motif. Avant de payer ou de réserver, confirme toujours sur le site officiel du pays de destination. Cette application n'est liée à aucune ambassade.</p>
+    <p>Les ambassades ne demandent jamais de payer par téléphone ou à un particulier. Méfie-toi des sites non officiels qui revendent des e-visas plus cher.</p>
+  </footer>
+</div>
+
+<script id="app-src" type="text/plain">
+
+
+/* ---------- Country names ---------- */
+let DN=null;try{DN=new Intl.DisplayNames(["fr"],{type:"region"})}catch(e){}
+const nm=c=>{try{return (DN&&DN.of(c))||c}catch(e){return c}};
+const DI={},PI={};DEST.forEach((c,i)=>DI[c]=i);PASS.forEach((c,i)=>PI[c]=i);
+const ALL=[...new Set([...DEST,...PASS])].sort((a,b)=>nm(a).localeCompare(nm(b),"fr"));
+
+/* ---------- Groups ---------- */
+const AFRICA=new Set("DZ AO BJ BW BF BI CV CM CF TD KM CG CD CI DJ EG GQ ER SZ ET GA GM GH GN GW KE LS LR LY MG MW ML MR MU MA MZ NA NE NG RW ST SN SC SL SO ZA SS SD TZ TG TN UG ZM ZW".split(" "));
+const ECOWAS=new Set("BJ CV GM GH GN GW CI LR NG SN SL TG".split(" "));
+const SCHENGEN=new Set("AT BE BG HR CZ DK EE FI FR DE GR HU IS IT LV LI LT LU MT NL NO PL PT RO SK SI ES SE CH".split(" "));
+const US_FULL=new Set("AF MM BF TD CG GQ ER HT IR LA LY ML NE SL SO SS SD SY YE PS".split(" "));
+const US_PART=new Set("AO AG BJ BI CU CI DM GA GM MW MR NG SN TZ TG TO TM VE ZM ZW".split(" "));
+
+/* ---------- Requirement lookup with verified overrides ---------- */
+const DAYS={a:7,b:10,c:14,d:15,e:21,f:28,g:30,h:31,i:42,j:45,k:60,l:90,m:120,n:180,o:240,p:360};
+function req(o,d){
+  if(o===d) return {k:"self"};
+  if(d==="TG"&&AFRICA.has(o)) return {k:"free",days:30,note:"togo"};
+  if(d==="US"&&US_FULL.has(o)) return {k:"no",note:"usfull"};
+  const r=PI[o],c=DI[d];
+  if(r===undefined||c===undefined) return {k:"unknown"};
+  const v=M[r][c];
+  let out;
+  if(v==="-") out={k:"self"};
+  else if(v==="R") out={k:"req"};
+  else if(v==="E") out={k:"evisa"};
+  else if(v==="O") out={k:"arr"};
+  else if(v==="T") out={k:"eta"};
+  else if(v==="F") out={k:"free"};
+  else if(v==="N") out={k:"no"};
+  else out={k:"free",days:DAYS[v]};
+  if(d==="US"&&US_PART.has(o)) out.note="uspart";
+  return out;
+}
+const LABEL={free:"Sans visa",arr:"Visa à l'arrivée",eta:"Autorisation électronique",evisa:"e-Visa en ligne",req:"Visa obligatoire",no:"Entrée suspendue",self:"Ton pays",unknown:"Non renseigné"};
+const CLS={free:"st-free",arr:"st-arr",eta:"st-eta",evisa:"st-evisa",req:"st-req",no:"st-no",self:"st-self",unknown:"st-self"};
+
+/* ---------- Official links per destination ---------- */
+const OFF={
+  TG:[{t:"voyage.gouv.tg (visa et déclaration)",u:"https://voyage.gouv.tg"}],
+  US:[{t:"Visas américains (Département d'État)",u:"https://travel.state.gov/content/travel/en/us-visas.html"},{t:"ESTA (exemption de visa)",u:"https://esta.cbp.dhs.gov"},{t:"Formulaire DS-160",u:"https://ceac.state.gov/genniv/"}],
+  CA:[{t:"Visiter le Canada (IRCC)",u:"https://www.canada.ca/fr/immigration-refugies-citoyennete/services/visiter-canada.html"}],
+  GB:[{t:"Faut-il un visa ? (GOV.UK)",u:"https://www.gov.uk/check-uk-visa"}],
+  FR:[{t:"France-Visas",u:"https://france-visas.gouv.fr"}],
+  DE:[{t:"Visas pour l'Allemagne",u:"https://www.auswaertiges-amt.de/en/visa-service"},{t:"Auslandsportal (demande en ligne)",u:"https://digital.diplo.de/"}],
+  BE:[{t:"Office des étrangers (Belgique)",u:"https://dofi.ibz.be"}],
+  IT:[{t:"Visto per l'Italia",u:"https://vistoperitalia.esteri.it"}],
+  PT:[{t:"Vistos (Portugal)",u:"https://vistos.mne.gov.pt"}],
+  CH:[{t:"Secrétariat d'État aux migrations (Suisse)",u:"https://www.sem.admin.ch"}],
+  CN:[{t:"COVA (formulaire officiel)",u:"https://cova.mfa.gov.cn/"}],
+  IN:[{t:"e-Visa Inde",u:"https://indianvisaonline.gov.in/evisa/"}],
+  TR:[{t:"e-Visa Turquie",u:"https://www.evisa.gov.tr"}],
+  AE:[{t:"ICP (Émirats arabes unis)",u:"https://icp.gov.ae"}],
+  KE:[{t:"eTA Kenya",u:"https://www.etakenya.go.ke"}],
+  RW:[{t:"Immigration Rwanda",u:"https://www.migration.gov.rw"}],
+  EG:[{t:"e-Visa Égypte",u:"https://visa2egypt.gov.eg"}],
+  ET:[{t:"e-Visa Éthiopie",u:"https://www.evisa.gov.et"}],
+  BJ:[{t:"e-Visa Bénin",u:"https://evisa.bj"}],
+  GH:[{t:"Ghana Immigration Service",u:"https://www.gis.gov.gh"}],
+  NG:[{t:"Nigeria Immigration Service",u:"https://immigration.gov.ng"}],
+  ZA:[{t:"Home Affairs (Afrique du Sud)",u:"https://www.dha.gov.za"}],
+  MA:[{t:"e-Visa Maroc",u:"https://www.acces-maroc.ma"}],
+  CI:[{t:"Enrôlement e-Visa Côte d'Ivoire",u:"https://www.snedai.com"}],
+  RU:[{t:"e-Visa Russie",u:"https://evisa.kdmid.ru"}],
+  VN:[{t:"e-Visa Vietnam",u:"https://evisa.gov.vn"}],
+  LK:[{t:"ETA Sri Lanka",u:"https://www.eta.gov.lk"}],
+  KH:[{t:"e-Visa Cambodge",u:"https://www.evisa.gov.kh"}],
+  ID:[{t:"e-Visa Indonésie",u:"https://evisa.imigrasi.go.id"}],
+  TH:[{t:"e-Visa Thaïlande",u:"https://www.thaievisa.go.th"}],
+  TZ:[{t:"e-Visa Tanzanie",u:"https://visa.immigration.go.tz"}],
+  UG:[{t:"e-Visa Ouganda",u:"https://visas.immigration.go.ug"}],
+  KR:[{t:"K-ETA (Corée)",u:"https://www.k-eta.go.kr"},{t:"Visa Portal (Corée)",u:"https://www.visa.go.kr"}],
+  JP:[{t:"Visas pour le Japon",u:"https://www.mofa.go.jp/j_info/visit/visa/index.html"}],
+  AU:[{t:"Immigration Australie",u:"https://immi.homeaffairs.gov.au"}],
+  NZ:[{t:"Immigration Nouvelle-Zélande",u:"https://www.immigration.govt.nz"}],
+  SA:[{t:"Visa Arabie saoudite",u:"https://visa.visitsaudi.com"}],
+  SG:[{t:"ICA Singapour",u:"https://www.ica.gov.sg"}],
+  BR:[{t:"Ministère des Affaires étrangères (Brésil)",u:"https://www.gov.br/mre/pt-br"}]
+};
+const SCHENGEN_LINK={t:"Politique des visas Schengen (UE)",u:"https://home-affairs.ec.europa.eu/policies/schengen-borders-and-visa/visa-policy_en"};
+function officialLinks(o,d){
+  const L=[...(OFF[d]||[])];
+  if(SCHENGEN.has(d)) L.push(SCHENGEN_LINK);
+  const q=encodeURIComponent(`ambassade ${nm(d)} ${nm(o)} visa site officiel`);
+  L.push({t:`Rechercher l'ambassade de ${nm(d)} (web)`,u:"https://www.google.com/search?q="+q,search:true});
+  return L;
+}
+
+/* ---------- Detailed guides (Togolese passport) ---------- */
+const PASS_LINK={t:"DGDN · passeport togolais",u:"https://dgdn.gouv.tg"};
+const passportStep=(rule,tg)=>({
+  t:"Vérifier ou obtenir ton passeport",
+  d:`Règle à respecter pour cette destination : ${rule}`+(tg?" Pas de passeport ? La demande se fait à la DGDN à Lomé : pré-demande en ligne, puis passage en personne pour les empreintes.":" Renouvelle-le auprès des autorités de ton pays s'il ne respecte pas cette règle."),
+  c:tg?["Passeport ordinaire en cours de validité (durée vérifiée)","Au moins 2 pages vierges","Si nouveau passeport : certificat de nationalité, acte de naissance, attestation de personne à prévenir, copie CNI, preuve de profession, 2 photos, 30 000 FCFA"]:["Passeport en cours de validité (durée vérifiée)","Au moins 2 pages vierges"],
+  l:tg?[PASS_LINK]:[]
+});
+const GUIDES={
+  "TG>FR":{
+    court:{label:"Tourisme, affaires, famille (≤ 90 jours)",where:"Formulaire sur France-Visas, dépôt au centre Capago de Lomé.",fee:"Frais de visa Schengen : 90 € (adulte) + frais de service Capago, à vérifier au moment du dépôt.",steps:[
+      passportStep("valable au moins 3 mois après la date de retour, délivré il y a moins de 10 ans.",true),
+      {t:"Remplir le formulaire sur France-Visas",d:"Crée un compte sur le site officiel, choisis le visa de court séjour, remplis le formulaire et imprime le récapitulatif.",c:["Compte France-Visas créé","Formulaire rempli et récapitulatif imprimé","Formulaire signé"],l:[{t:"France-Visas · Togo",u:"https://france-visas.gouv.fr/fr/togo"}]},
+      {t:"Rassembler les justificatifs",d:"Prépare les originaux et une copie de chaque pièce. Plus ton dossier prouve que tu rentreras au Togo, plus il est solide.",c:["Photo d'identité récente aux normes","Assurance voyage Schengen (couverture 30 000 € minimum)","Réservation de vol aller-retour","Hébergement : réservation d'hôtel ou attestation d'accueil","Relevés bancaires des 3 derniers mois","Preuve d'attaches au Togo : attestation de travail et de congé, ou registre de commerce","Lettre de motivation du voyage (voir le panneau)","Lettre d'invitation si visite familiale ou professionnelle"]},
+      {t:"Prendre rendez-vous chez Capago",d:"Sauf cas particuliers, toute personne résidant au Togo prend rendez-vous au centre Capago de Lomé. Le lien est sur la page Togo de France-Visas.",c:["Rendez-vous Capago réservé","Date notée, rappel programmé"],l:[{t:"France-Visas · Togo",u:"https://france-visas.gouv.fr/fr/togo"}]},
+      {t:"Déposer le dossier en personne",d:"Tout demandeur de plus de 12 ans se présente en personne au premier dépôt pour les empreintes et la photo.",c:["Dossier complet apporté (originaux + copies)","Frais payés, reçu conservé"]},
+      {t:"Suivre la demande et récupérer le passeport",d:"Après le dépôt, suis l'évolution de ta demande sur le site de Capago, puis récupère ton passeport au centre.",c:["Passeport récupéré, visa vérifié (dates, nombre d'entrées)"]}
+    ]},
+    etudes:{label:"Études",where:"Procédure Études en France (Campus France) avant le visa, puis dépôt chez Capago.",fee:"Frais Campus France et frais de visa long séjour à vérifier sur les sites officiels.",steps:[
+      passportStep("valable pour toute la durée du séjour, délivré il y a moins de 10 ans.",true),
+      {t:"Candidater via Études en France",d:"Les étudiants passent d'abord par la plateforme Études en France de Campus France : dossier en ligne, entretien, puis admission.",c:["Compte Études en France créé","Dossier de candidature complété","Entretien Campus France passé","Admission ou pré-inscription reçue"],l:[{t:"Campus France",u:"https://www.campusfrance.org/fr"}]},
+      {t:"Demander le visa étudiant sur France-Visas",d:"Une fois admis, remplis la demande de visa de long séjour étudiant sur France-Visas.",c:["Formulaire visa étudiant rempli","Preuve de ressources (montant mensuel exigé à vérifier)","Hébergement en France","Attestation d'admission"],l:[{t:"France-Visas · Togo",u:"https://france-visas.gouv.fr/fr/togo"}]},
+      {t:"Déposer chez Capago",d:"Prends rendez-vous et dépose ton dossier en personne au centre Capago de Lomé.",c:["Rendez-vous réservé","Dossier déposé, reçu conservé"]}
+    ]}
+  },
+  "TG>DE":{
+    ausbildung:{label:"Ausbildung (formation en alternance)",where:"Ambassade d'Allemagne à Lomé, Bd de la République. Demande en ligne (Auslandsportal) ou rendez-vous classique.",fee:"Frais de visa national : 50 000 FCFA (fiche de l'ambassade, 12/2024), payés uniquement au guichet.",scam:"L'ambassade précise que formulaires et rendez-vous sont gratuits. Si quelqu'un te demande de l'argent par téléphone, c'est une escroquerie.",steps:[
+      passportStep("valable au moins 12 mois, délivré il y a moins de 10 ans.",true),
+      {t:"Obtenir le contrat d'Ausbildung et le niveau B1",d:"L'ambassade demande un contrat d'apprentissage signé et un certificat d'allemand de niveau B1.",c:["Contrat d'apprentissage ou de formation signé","Certificat de langue allemande B1","Preuve de logement en Allemagne","Diplômes et relevés de notes"]},
+      {t:"Rédiger la lettre de motivation",d:"Elle doit répondre à trois questions : pourquoi cette formation, ce que tu attends de ton séjour, ce que tu feras après.",c:["Lettre répondant aux 3 questions, signée"]},
+      {t:"Déposer la demande",d:"Option conseillée : la demande en ligne sur l'Auslandsportal. L'ambassade te dit avant le rendez-vous si le dossier est complet. Les rendez-vous classiques sont rares.",c:["Formulaire de visa long séjour rempli et signé","Photo biométrique 35 × 45 mm, fond clair","Fiche « article 54 » signée","Assurance maladie valable en Allemagne","Demande en ligne envoyée ou rendez-vous réservé"],l:[{t:"Auslandsportal (demande en ligne)",u:"https://digital.diplo.de/"},{t:"Ambassade d'Allemagne à Lomé",u:"https://lome.diplo.de/"}]},
+      {t:"Rendez-vous à l'ambassade et attente",d:"Présente-toi en personne avec les originaux et une copie de chaque pièce. L'avis des autorités allemandes peut prendre plusieurs mois.",c:["Originaux et copies apportés","50 000 FCFA payés au guichet, reçu conservé"]}
+    ]},
+    court:{label:"Visite, affaires (≤ 90 jours)",where:"Ambassade d'Allemagne à Lomé, sur rendez-vous en ligne.",fee:"Frais de visa Schengen : 90 € (adulte), à vérifier.",steps:[
+      passportStep("valable au moins 3 mois après la fin du visa, délivré il y a moins de 10 ans.",true),
+      {t:"Remplir le formulaire Schengen en ligne",d:"Remplis le formulaire sur VIDEX, imprime-le et signe-le. Fais la demande au moins 15 jours avant le départ.",c:["Formulaire VIDEX imprimé et signé"],l:[{t:"VIDEX (formulaire)",u:"https://videx.diplo.de/"}]},
+      {t:"Rassembler les justificatifs",d:"L'ambassade insiste sur les preuves de liens avec le Togo et de moyens de subsistance.",c:["Photo 35 × 45 mm","Assurance voyage Schengen","Réservation de vol","Hébergement ou invitation","Relevés bancaires des 3 derniers mois","Preuves d'activité : attestation de travail, documents de douane, contrats","Lettre d'invitation familiale ou professionnelle si besoin"]},
+      {t:"Prendre rendez-vous et déposer",d:"Le dépôt se fait uniquement sur rendez-vous pris sur le site de l'ambassade, en personne.",c:["Rendez-vous réservé","Dossier déposé"],l:[{t:"Ambassade d'Allemagne à Lomé",u:"https://lome.diplo.de/"}]}
+    ]}
+  },
+  "TG>US":{
+    situation:{label:"Situation actuelle",where:"Ambassade des États-Unis à Lomé, 4332 Bd Eyadema.",fee:"Frais selon la catégorie, affichés sur le site de l'ambassade.",steps:[
+      {t:"Comprendre la suspension en cours",d:"Les États-Unis ont suspendu pour les ressortissants togolais la délivrance des visas visiteurs B-1/B-2, étudiants F et M, d'échange J et d'immigrant. Mesure annoncée par l'ambassade le 15 septembre 2025 et maintenue par la proclamation entrée en vigueur le 1er janvier 2026. Les visas délivrés avant cette date ne sont pas annulés.",c:["J'ai lu l'annonce à jour sur le site de l'ambassade"],l:[{t:"Ambassade des États-Unis au Togo",u:"https://tg.usembassy.gov/"}]},
+      {t:"Vérifier si tu es dans une exception",d:"Restent possibles notamment : la famille proche d'un citoyen américain (conjoint, enfant, parent), les doubles nationaux qui voyagent avec un autre passeport, les résidents permanents, les diplomates et agents publics en mission, certains athlètes de grands événements sportifs, et les dérogations d'intérêt national accordées au cas par cas.",c:["Exception identifiée et justificatifs réunis"]},
+      {t:"Si tu es éligible : DS-160 et rendez-vous",d:"Paie les frais (Ecobank ou carte), remplis le DS-160 avec ta photo, puis réserve l'entretien avec le même code-barres DS-160.",c:["Frais payés, reçu conservé","DS-160 soumis, confirmation imprimée","Rendez-vous réservé"],l:[{t:"Formulaire DS-160",u:"https://ceac.state.gov/genniv/"}]},
+      {t:"Éviter les arnaques",d:"Personne ne peut « débloquer » un visa suspendu contre paiement. Ne donne ni argent ni passeport à un intermédiaire qui te le promet.",c:["J'utilise uniquement les sites officiels"]}
+    ]}
+  },
+  "TG>CA":{
+    visiteur:{label:"Visite, affaires",where:"Demande en ligne sur le site d'IRCC, biométrie dans un centre de réception des demandes de visa (CRDV).",fee:"Frais de visa et de biométrie affichés sur le site d'IRCC au moment de payer.",steps:[
+      passportStep("valable pour toute la durée du séjour.",true),
+      {t:"Créer un compte IRCC et remplir la demande",d:"Toute la demande se fait en ligne sur le site officiel du gouvernement du Canada.",c:["Compte IRCC créé","Formulaire rempli"],l:[{t:"Visiter le Canada (IRCC)",u:"https://www.canada.ca/fr/immigration-refugies-citoyennete/services/visiter-canada.html"}]},
+      {t:"Numériser les justificatifs",d:"IRCC demande en général un passeport valide, des preuves de moyens financiers, un itinéraire et des preuves de liens avec ton pays.",c:["Passeport scanné","Relevés bancaires","Itinéraire : vol et hôtel","Preuves de liens : emploi, famille, biens","Lettre d'invitation si besoin"]},
+      {t:"Payer et donner la biométrie",d:"Après paiement, tu reçois une lettre de biométrie qui indique où te présenter. Vérifie sur le site d'IRCC quel centre dessert les résidents du Togo, puis prends rendez-vous.",c:["Frais payés","Lettre de biométrie reçue","Empreintes et photo données au CRDV"]},
+      {t:"Suivre la demande",d:"Suis l'état dans ton compte IRCC. En cas d'accord, on te demandera d'envoyer ton passeport.",c:["Décision reçue","Passeport envoyé puis récupéré"]}
+    ]}
+  },
+  "TG>CN":{
+    affaires:{label:"Affaires, salons (visa M)",where:"Formulaire COVA obligatoire en ligne, puis dépôt à l'ambassade de Chine à Lomé.",fee:"Frais selon le nombre d'entrées, à vérifier auprès de l'ambassade.",steps:[
+      passportStep("valable au moins 6 mois, avec des pages vierges.",true),
+      {t:"Obtenir une lettre d'invitation",d:"Pour un visa d'affaires, demande une lettre d'invitation à ton fournisseur ou à l'organisateur du salon, avec tes nom, dates et le but de la visite.",c:["Lettre d'invitation de l'entreprise chinoise","Copie de la licence de l'entreprise qui invite (营业执照)"]},
+      {t:"Remplir le formulaire COVA",d:"Depuis mars 2025, le formulaire en ligne COVA et le téléversement des pièces sont obligatoires. Imprime le formulaire et la page de confirmation, puis signe.",c:["Formulaire COVA rempli","Pièces téléversées","Formulaire et confirmation imprimés et signés"],l:[{t:"COVA (formulaire officiel)",u:"https://cova.mfa.gov.cn/"}]},
+      {t:"Déposer à l'ambassade",d:"Dépose ton dossier à la section consulaire de l'ambassade de Chine à Lomé, aux jours et horaires qu'elle publie.",c:["Photo aux normes","Réservation de vol et d'hôtel","Relevés bancaires","Dossier déposé, reçu conservé"]}
+    ]},
+    tourisme:{label:"Tourisme (visa L)",where:"Formulaire COVA en ligne, dépôt à l'ambassade de Chine à Lomé.",fee:"Frais à vérifier auprès de l'ambassade.",steps:[
+      passportStep("valable au moins 6 mois, avec des pages vierges.",true),
+      {t:"Remplir le formulaire COVA",d:"Formulaire en ligne obligatoire. Imprime-le avec la confirmation et signe.",c:["Formulaire COVA rempli et imprimé"],l:[{t:"COVA (formulaire officiel)",u:"https://cova.mfa.gov.cn/"}]},
+      {t:"Préparer le dossier",d:"Itinéraire jour par jour, hébergement, vols et moyens financiers.",c:["Réservation de vol aller-retour","Réservations d'hôtel","Itinéraire du voyage","Relevés bancaires"]},
+      {t:"Déposer à l'ambassade",d:"Dépôt en personne à la section consulaire de l'ambassade de Chine à Lomé.",c:["Dossier déposé, reçu conservé"]}
+    ]}
+  }
+};
+
+/* ---------- Generic guide from the requirement ---------- */
+function genericGuide(o,d,r){
+  const D=nm(d),O=nm(o),tg=o==="TG",links=officialLinks(o,d);
+  const pv=passportStep("souvent 6 mois de validité après la date de retour ; vérifie la règle exacte du pays.",tg);
+  const proofs={t:"Préparer les preuves demandées à la frontière",d:`Même sans visa, la police aux frontières peut demander ces pièces à l'arrivée.`,c:["Billet de retour ou de continuation","Réservation d'hébergement ou adresse de ton hôte","Moyens financiers (relevé bancaire, carte, espèces)","Carnet de vaccination (fièvre jaune si exigée)","Assurance voyage"]};
+  let g={label:"Guide",fee:"",where:"",steps:[]};
+  switch(r.k){
+    case "self": g.where="Tu voyages dans ton propre pays : aucune démarche de visa."; g.steps=[]; break;
+    case "free":
+      g.where=r.note==="togo"
+        ?`Depuis le 18 mai 2026, les ressortissants africains entrent au Togo sans visa pour 30 jours, à condition de remplir une déclaration sur voyage.gouv.tg au moins 24 heures avant l'arrivée.`
+        :`${D} : entrée sans visa avec un passeport ${adj(o)}`+(r.days?`, ${r.days} jours maximum.`:`, durée selon les règles du pays.`);
+      g.fee="Pas de frais de visa.";
+      g.steps=[pv];
+      if(r.note==="togo") g.steps.push({t:"Faire la déclaration de voyage en ligne",d:"Remplis la déclaration sur voyage.gouv.tg au moins 24 heures avant d'arriver au Togo, puis garde le document reçu pour le contrôle.",c:["Déclaration envoyée au moins 24 h avant","Document de voyage reçu et imprimé ou enregistré"],l:[{t:"voyage.gouv.tg",u:"https://voyage.gouv.tg"}]});
+      g.steps.push(proofs);
+      g.steps.push({t:"Respecter la durée autorisée",d:r.days?`Note ta date limite de sortie : ${r.days} jours après l'entrée. Pour rester plus longtemps, travailler ou étudier, il faut un visa ou un titre de séjour.`:"Vérifie la durée exacte autorisée. Pour travailler ou étudier, un visa ou un titre de séjour est en général nécessaire.",c:["Date limite de sortie notée"],l:links});
+      break;
+    case "arr":
+      g.where=`${D} : le visa est délivré à l'arrivée, à l'aéroport ou au poste frontière.`;
+      g.fee="Frais à payer sur place : prévois la somme exacte, souvent en dollars ou en euros.";
+      g.steps=[pv,{t:"Vérifier s'il faut s'enregistrer avant le départ",d:"Certains pays demandent une pré-inscription en ligne même pour le visa à l'arrivée.",c:["Pré-inscription vérifiée sur le site officiel"],l:links},proofs,{t:"Préparer le paiement",d:"Prévois les frais en espèces et une photo d'identité au cas où.",c:["Frais en espèces dans la bonne devise","2 photos d'identité"]}];
+      break;
+    case "eta":
+      g.where=`${D} : pas de visa, mais une autorisation électronique de voyage est obligatoire avant le départ.`;
+      g.fee="Frais modestes payés en ligne sur le site officiel.";
+      g.steps=[pv,{t:"Demander l'autorisation électronique",d:"Fais la demande sur le site officiel du gouvernement, plusieurs jours avant le départ. L'autorisation est liée à ton passeport.",c:["Demande envoyée sur le site officiel","Autorisation reçue par e-mail"],l:links},proofs];
+      break;
+    case "evisa":
+      g.where=`Un visa est nécessaire, mais la demande se fait en ligne : pas besoin de déposer en ambassade.`;
+      g.fee="Frais payés en ligne. Utilise uniquement le site du gouvernement : des sites privés revendent le même e-visa plus cher.";
+      g.steps=[pv,{t:"Scanner les pièces",d:"Les e-visas demandent en général des fichiers numériques.",c:["Page d'identité du passeport scannée","Photo d'identité numérique aux normes","Réservation de vol","Réservation d'hôtel ou invitation","Relevé bancaire (si demandé)"]},{t:"Faire la demande sur le site officiel",d:"Remplis le formulaire, téléverse les pièces et paie en ligne. Compte quelques jours de traitement.",c:["Demande envoyée","Paiement effectué, reçu conservé","e-Visa reçu et imprimé"],l:links},proofs];
+      break;
+    case "req":
+      g.where=`Il faut un visa obtenu avant le départ auprès de l'ambassade ou du consulat compétent pour ton pays de résidence (destination : ${D}).`;
+      g.fee="Frais affichés par l'ambassade ou son prestataire.";
+      g.steps=[pv,{t:"Trouver la représentation compétente",d:`Cherche si ${D} a une ambassade dans ton pays de résidence, sinon laquelle le couvre. Beaucoup de pays passent par un prestataire (VFS, TLS, Capago, BLS).`,c:["Ambassade ou prestataire identifié","Liste officielle des pièces téléchargée"],l:links},{t:"Constituer le dossier",d:"Les pièces les plus courantes. Suis toujours la liste officielle.",c:["Formulaire rempli et signé","Photos aux normes du pays","Réservation de vol","Hébergement ou invitation","Relevés bancaires des 3 derniers mois","Preuves d'attaches dans ton pays (travail, entreprise, famille)","Assurance voyage","Lettre de motivation du voyage","Traductions certifiées si demandées"]},{t:"Prendre rendez-vous et déposer",d:"Dépose en personne si demandé, avec originaux et copies. Garde tous les reçus.",c:["Rendez-vous pris","Dossier déposé","Reçu conservé"]},{t:"Suivre la demande",d:"Suis l'état de ta demande et récupère ton passeport.",c:["Passeport récupéré, visa vérifié"]}];
+      break;
+    case "no":
+      g.where=r.note==="usfull"
+        ?`Les États-Unis ont suspendu l'entrée et la délivrance de visas pour les ressortissants ${pl(o)} (proclamation entrée en vigueur le 1er janvier 2026), sauf exceptions très limitées.`
+        :`${D} : entrée non autorisée actuellement pour les détenteurs de ce passeport.`;
+      g.steps=[{t:"Vérifier les exceptions officielles",d:"Seules quelques catégories restent possibles (doubles nationaux voyageant avec un autre passeport, résidents permanents, diplomates, dérogations au cas par cas). Consulte la source officielle.",c:["Situation vérifiée sur le site officiel"],l:links},{t:"Éviter les arnaques",d:"Personne ne peut obtenir un visa suspendu contre paiement.",c:["Aucun paiement à un intermédiaire"]}];
+      break;
+    default:
+      g.where="Pas de donnée pour cette combinaison. Vérifie sur le site officiel.";
+      g.steps=[{t:"Vérifier sur le site officiel",d:"Consulte l'ambassade du pays de destination.",c:["Exigence vérifiée"],l:links}];
+  }
+  return g;
+}
+function adj(o){return o==="TG"?"togolais":"de "+nm(o)}
+function pl(o){return o==="TG"?"togolais":"de "+nm(o)}
+
+/* ---------- State ---------- */
+const $=s=>document.querySelector(s);
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let state=store.get("dv2_state",{o:"TG",d:"DE",m:null});
+if(!ALL.includes(state.o))state.o="TG";
+if(!ALL.includes(state.d))state.d="DE";
+let checks=store.get("dv2_checks",{});
+function detectHere(){try{const tz=Intl.DateTimeFormat().resolvedOptions().timeZone;return {tz,cc:TZ2CC[tz]||null}}catch(e){return {tz:null,cc:null}}}
+if(state.auto===undefined)state.auto=true;
+let DET=detectHere();
+if(state.auto&&DET.cc)state.here=DET.cc;
+if(!state.here||!ALL.includes(state.here))state.here=state.o;
+let hereMsg="";
+function residence(){return state.here||state.o}
+function checkHere(){
+  if(!state.auto)return;
+  DET=detectHere();
+  if(DET.cc&&DET.cc!==state.here){
+    state.here=DET.cc;
+    hereMsg=`Position mise à jour automatiquement : ${nm(DET.cc)}.`;
+    if(state.here===state.d&&state.here!==state.o)state.tab="surplace";
+    save();$("#here").value=state.here;renderAll();
+  }
+}
+
+function guide(){
+  const r=req(state.o,state.d);
+  const G=GUIDES[state.o+">"+state.d];
+  if(G){
+    if(!state.m||!G[state.m]) state.m=Object.keys(G)[0];
+    return {r,motifs:G,g:G[state.m]};
+  }
+  state.m="general";
+  return {r,motifs:null,g:genericGuide(state.o,state.d,r)};
+}
+function key(){return state.o+">"+state.d+"/"+state.m}
+function save(){store.set("dv2_state",state)}
+
+/* ---------- Render ---------- */
+function fillSelects(){
+  ["origin","dest"].forEach(id=>{
+    const s=$("#"+id);s.textContent="";
+    ALL.forEach(c=>{
+      if(id==="origin"&&PI[c]===undefined)return;
+      if(id==="dest"&&DI[c]===undefined)return;
+      const op=document.createElement("option");op.value=c;op.textContent=nm(c);s.append(op);
+    });
+  });
+  $("#origin").value=state.o;$("#dest").value=state.d;
+}
+(function(){const s=$("#here");ALL.forEach(c=>{const op=document.createElement("option");op.value=c;op.textContent=nm(c);s.append(op)});s.value=residence();$("#autoHere").checked=!!state.auto})();
+$("#here").onchange=e=>{state.here=e.target.value;state.auto=false;if(state.gps){state.gps=false;stopGps()}$("#autoHere").checked=false;hereMsg="";save();renderAll()};
+$("#autoHere").onchange=e=>{state.auto=e.target.checked;if(state.auto&&state.gps){state.gps=false;stopGps()}if(state.auto){DET=detectHere();if(DET.cc){state.here=DET.cc;$("#here").value=state.here}}save();renderAll()};
+setInterval(checkHere,60000);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)checkHere()});
+window.addEventListener("focus",checkHere);
+$("#origin").onchange=e=>{state.o=e.target.value;state.m=null;save();renderAll()};
+$("#dest").onchange=e=>{state.d=e.target.value;state.m=null;save();renderAll()};
+$("#swap").onclick=()=>{if(PI[state.d]===undefined||DI[state.o]===undefined)return;[state.o,state.d]=[state.d,state.o];state.m=null;save();$("#origin").value=state.o;$("#dest").value=state.d;renderAll()};
+
+function renderVerdict(r){
+  const v=$("#verdict");v.textContent="";
+  const s=document.createElement("div");s.className="stampbox "+CLS[r.k];
+  s.textContent=LABEL[r.k];
+  if(r.days){const sm=document.createElement("small");sm.textContent=r.days+" jours max";s.append(sm)}
+  const w=document.createElement("div");w.className="what";
+  const h=document.createElement("h2");h.textContent=`${nm(state.o)} → ${nm(state.d)}`;
+  const p=document.createElement("p");
+  p.textContent={free:"Tu peux entrer sans visa pour un court séjour (tourisme, visite, affaires).",arr:"Le visa se prend à l'arrivée, sans démarche préalable en ambassade.",eta:"Pas de visa, mais une autorisation électronique à demander en ligne avant de partir.",evisa:"Visa nécessaire, mais la demande se fait entièrement en ligne.",req:"Visa nécessaire avant le départ, à demander auprès de l'ambassade ou de son prestataire.",no:"Entrée ou délivrance de visa suspendue pour ce passeport.",self:"Aucune formalité de visa.",unknown:"Pas de donnée."}[r.k]+" Ceci vaut pour un court séjour : pour étudier, travailler ou t'installer, un visa est presque toujours nécessaire.";
+  w.append(h,p);
+  if(r.note==="uspart"){const n=document.createElement("p");n.className="note alert";n.innerHTML="<strong>Restriction américaine :</strong> pour les ressortissants de ce pays, les visas visiteurs B-1/B-2, étudiants F/M, d'échange J et d'immigrant sont suspendus depuis le 1er janvier 2026 (exceptions limitées). D'autres catégories restent possibles au cas par cas.";w.append(n)}
+  if(r.note==="togo"){const n=document.createElement("p");n.className="note good";n.textContent="Changement récent : exemption de visa pour tous les ressortissants africains depuis le 18 mai 2026, avec déclaration obligatoire sur voyage.gouv.tg.";w.append(n)}
+  if(ECOWAS.has(state.o)&&ECOWAS.has(state.d)&&state.o!==state.d){const n=document.createElement("p");n.className="note good";n.textContent="Libre circulation CEDEAO : séjour court sans visa. Le carnet de vaccination contre la fièvre jaune est souvent contrôlé.";w.append(n)}
+  if(r.k!=="self"){const b=document.createElement("button");b.type="button";b.className="btn cta";b.textContent="Trouver un vol ✈";b.onclick=()=>{state.tab="vols";save();renderAll(true);document.getElementById("tabs").scrollIntoView({behavior:"smooth",block:"start"})};w.append(b)}
+  v.append(s,w);
+}
+function renderMotifs(motifs){
+  const box=$("#motifs");box.textContent="";box.hidden=!motifs;
+  if(!motifs)return;
+  Object.entries(motifs).forEach(([k,m])=>{
+    const b=document.createElement("button");b.className="motif";b.type="button";b.textContent=m.label;
+    b.setAttribute("aria-pressed",k===state.m);
+    b.onclick=()=>{state.m=k;save();renderAll()};
+    box.append(b);
+  });
+}
+function renderSteps(g){
+  const done=checks[key()]||{};
+  const s=$("#summary");s.textContent="";
+  const h=document.createElement("h2");h.textContent=g.label==="Guide"?"Démarches":g.label;
+  const w=document.createElement("p");w.className="where";w.textContent=g.where;
+  s.append(h,w);
+  if(g.fee){const f=document.createElement("p");f.className="fee";f.textContent=g.fee;s.append(f)}
+  if(g.scam){const n=document.createElement("p");n.className="note scam";n.textContent=g.scam;s.append(n)}
+  if(state.o==="TG"&&!GUIDES[state.o+">"+state.d]&&g.steps.length){const n=document.createElement("p");n.className="muted";n.textContent="Guide général établi à partir de l'exigence de visa. Demande les détails à l'assistant et vérifie la liste officielle des pièces.";s.append(n)}
+  const ol=$("#steps");ol.textContent="";
+  g.steps.forEach((st,i)=>{
+    const li=document.createElement("li");li.className="step";
+    const t=document.createElement("h3");t.textContent=st.t;
+    const d=document.createElement("p");d.textContent=st.d;
+    li.append(t,d);
+    const ul=document.createElement("ul");ul.className="checks";
+    let all=true;
+    st.c.forEach((item,j)=>{
+      const id=`c_${i}_${j}`;
+      const on=!!done[i+"_"+j];if(!on)all=false;
+      const row=document.createElement("li");
+      const lab=document.createElement("label");lab.htmlFor=id;
+      const cb=document.createElement("input");cb.type="checkbox";cb.id=id;cb.checked=on;
+      const sp=document.createElement("span");sp.textContent=item;if(on)sp.className="done-text";
+      lab.append(cb,sp);row.append(lab);
+      const dl=docLinks(item);
+      if(dl.length){const src=document.createElement("div");src.className="src";const lb=document.createElement("span");lb.textContent="Où l'obtenir :";src.append(lb);
+        dl.forEach(x=>{let el;if(x.u==="#"){el=document.createElement("span");el.textContent=x.d}else{el=document.createElement("a");el.href=x.u;el.textContent=x.t;el.title=x.d;if(!x.u.startsWith("#")){el.target="_blank";el.rel="noopener"}}src.append(el)});
+        row.append(src)}
+      cb.onchange=()=>{const k=key();checks[k]=checks[k]||{};checks[k][i+"_"+j]=cb.checked;store.set("dv2_checks",checks);renderAll(true)};
+      ul.append(row);
+    });
+    li.append(ul);
+    if(all&&st.c.length)li.classList.add("done");
+    if(st.l&&st.l.length){
+      const lk=document.createElement("div");lk.className="links";
+      st.l.forEach(x=>{const a=document.createElement("a");a.href=x.u;a.target="_blank";a.rel="noopener";a.textContent=x.t;a.title=x.u;if(x.search)a.className="search";lk.append(a)});
+      li.append(lk);
+    }
+    ol.append(li);
+  });
+}
+function counts(g){let t=0,d=0;const done=checks[key()]||{};g.steps.forEach((st,i)=>st.c.forEach((_,j)=>{t++;if(done[i+"_"+j])d++}));return{t,d}}
+function renderProgress(g){const {t,d}=counts(g);const p=t?Math.round(d/t*100):0;$("#pct").textContent=p+" %";$("#count").textContent=t?`${d} sur ${t} éléments prêts`:"Rien à préparer";$("#barfill").style.width=p+"%"}
+function renderReach(){
+  const o=state.o;const tally={free:0,arr:0,eta:0,evisa:0,req:0,no:0};const easy=[];
+  DEST.forEach(d=>{if(d===o)return;const r=req(o,d);if(tally[r.k]!==undefined)tally[r.k]++;if(r.k==="free"||r.k==="arr")easy.push([d,r])});
+  $("#reachTitle").textContent=`Où aller avec un passeport ${adj(o)}`;
+  const R=$("#reach");R.textContent="";
+  [["free","Sans visa"],["arr","Visa à l'arrivée"],["eta","Autorisation électronique"],["evisa","e-Visa en ligne"],["req","Visa obligatoire"],["no","Entrée suspendue"]].forEach(([k,l])=>{
+    const row=document.createElement("div");const a=document.createElement("span");a.textContent=l;const b=document.createElement("b");b.textContent=tally[k]+" pays";row.append(a,b);R.append(row)});
+  const ul=$("#reachList");ul.textContent="";
+  easy.sort((a,b)=>nm(a[0]).localeCompare(nm(b[0]),"fr")).forEach(([d,r])=>{const li=document.createElement("li");li.textContent=`${nm(d)} · ${LABEL[r.k].toLowerCase()}${r.days?" "+r.days+" j":""}`;ul.append(li)});
+}
+/* ---------- Country space: resources per destination ---------- */
+/* o = officiel, p = plateforme privée. Liens vérifiés le 08.10.2026 ou sites officiels connus. */
+const R_=(t,u,d,k)=>({t,u,d,k:k||"o"});
+const EU_LINKS={
+  prog:[R_("Portail européen de l'immigration","https://immigration-portal.ec.europa.eu","Commission européenne : études, travail, chercheurs, regroupement familial, pays par pays."),R_("Erasmus+","https://erasmus-plus.ec.europa.eu","Programme de l'UE : études, stages, échanges de jeunes et bourses de master.")],
+  emploi:[R_("EURES","https://eures.europa.eu","Portail européen de l'emploi : offres de tous les pays de l'UE et de l'EEE.")]
+};
+const RES={
+  FR:{
+    fac:[R_("Welcome to France","https://www.welcometofrance.com","Accueil des étudiants, chercheurs et talents étrangers : démarches à l'arrivée."),R_("OFII","https://www.ofii.fr","Office français de l'immigration et de l'intégration : accueil et validation du visa long séjour."),R_("Service-public.fr : étrangers","https://www.service-public.fr","Fiches officielles sur le séjour, le travail et les titres de séjour.")],
+    prog:[R_("Campus France / Études en France","https://www.campusfrance.org/fr","Candidature aux études et bourses du gouvernement français. Procédure obligatoire pour les étudiants togolais.")],
+    emploi:[R_("France Travail","https://www.francetravail.fr","Service public de l'emploi : offres partout en France.")],
+    heberg:[R_("Crous : logement étudiant","https://trouverunlogement.lescrous.fr","Résidences universitaires à loyer modéré."),R_("Visale","https://www.visale.fr","Garantie de loyer gratuite de l'État pour les étudiants et jeunes salariés.")]
+  },
+  DE:{
+    fac:[R_("Make it in Germany","https://www.make-it-in-germany.com","Portail officiel du gouvernement allemand pour les travailleurs qualifiés étrangers."),R_("Anerkennung in Deutschland","https://www.anerkennung-in-deutschland.de","Reconnaissance des diplômes étrangers en Allemagne.")],
+    prog:[R_("Chancenkarte (carte d'opportunité)","https://www.make-it-in-germany.com/en/visa-residence/types/job-search-opportunity-card","Visa de recherche d'emploi à points. En 2026 : ressources d'au moins 1 091 € net par mois (compte bloqué)."),R_("DAAD : bourses","https://www.daad.de","Office allemand d'échanges universitaires : bourses d'études et de recherche.")],
+    emploi:[R_("Bundesagentur für Arbeit : Jobsuche","https://www.arbeitsagentur.de/jobsuche/","Agence fédérale pour l'emploi : offres d'emploi et d'Ausbildung.")],
+    heberg:[R_("Studierendenwerke","https://www.studierendenwerke.de","Résidences étudiantes publiques."),R_("WG-Gesucht","https://www.wg-gesucht.de","Colocations et studios, très utilisé en Allemagne.","p")]
+  },
+  CA:{
+    fac:[R_("Immigration et citoyenneté Canada","https://www.canada.ca/fr/immigration-refugies-citoyennete.html","Site officiel IRCC : visas, permis, résidence permanente, services aux nouveaux arrivants."),R_("Immigration Québec","https://www.quebec.ca/immigration","Programmes et démarches propres au Québec.")],
+    prog:[R_("Entrée express","https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/entree-express.html","Résidence permanente des travailleurs qualifiés. En 2026, de nombreux tirages réservés aux francophones (5 000 invitations les 6 et 19 août)."),R_("Travailler au Canada","https://www.canada.ca/fr/immigration-refugies-citoyennete/services/travailler-canada.html","Permis de travail, dont la Mobilité francophone pour les francophones embauchés hors Québec.")],
+    emploi:[R_("Guichet-Emplois","https://www.guichetemplois.gc.ca","Site officiel des offres d'emploi au Canada.")],
+    heberg:[R_("SCHL : louer un logement","https://www.schl.ca","Société canadienne d'hypothèques et de logement : guides officiels pour louer.")]
+  },
+  US:{
+    fac:[R_("Département d'État : visas","https://travel.state.gov/content/travel/en/us-visas.html","Catégories de visas et restrictions en vigueur.")],
+    prog:[R_("Loterie DV (carte verte)","https://dvprogram.state.gov","Seul site officiel et gratuit. Inscriptions DV-2027 pas encore ouvertes début septembre 2026. Pour les pays sous restriction (dont le Togo), les visas d'immigrant restent suspendus."),R_("EducationUSA","https://educationusa.state.gov","Réseau officiel de conseil pour étudier aux États-Unis.")],
+    emploi:[],
+    heberg:[]
+  },
+  GB:{
+    fac:[R_("GOV.UK : faut-il un visa ?","https://www.gov.uk/check-uk-visa","Outil officiel selon ta nationalité et ton motif.")],
+    prog:[R_("Bourses Chevening","https://www.chevening.org","Bourses de master du gouvernement britannique."),R_("Visa Skilled Worker","https://www.gov.uk/skilled-worker-visa","Visa de travail avec employeur sponsor.")],
+    emploi:[R_("Find a job (GOV.UK)","https://findajob.dwp.gov.uk","Service public de l'emploi britannique."),R_("NHS Jobs","https://www.jobs.nhs.uk","Offres du service de santé, souvent avec parrainage de visa.")],
+    heberg:[]
+  },
+  BE:{emploi:[R_("Actiris (Bruxelles)","https://www.actiris.brussels","Office régional bruxellois de l'emploi."),R_("Le Forem (Wallonie)","https://www.leforem.be","Service public wallon de l'emploi."),R_("VDAB (Flandre)","https://www.vdab.be","Service public flamand de l'emploi.")]},
+  ES:{emploi:[R_("SEPE","https://www.sepe.es","Service public espagnol de l'emploi.")]},
+  IT:{prog:[R_("Universitaly","https://www.universitaly.it","Portail officiel des études en Italie et pré-inscription des étudiants étrangers.")]},
+  PT:{emploi:[R_("IEFP","https://www.iefp.pt","Institut public portugais de l'emploi.")]},
+  CH:{fac:[R_("Secrétariat d'État aux migrations","https://www.sem.admin.ch","Entrée, séjour et travail en Suisse.")],emploi:[R_("Job-Room (Travail.Swiss)","https://www.job-room.ch","Plateforme publique suisse de l'emploi.")]},
+  LU:{emploi:[R_("ADEM","https://adem.public.lu","Agence pour le développement de l'emploi au Luxembourg.")]},
+  NL:{emploi:[R_("Werk.nl","https://www.werk.nl","Service public néerlandais de l'emploi (UWV).")]},
+  CN:{prog:[R_("Bourses du gouvernement chinois (CSC)","https://www.campuschina.org","Candidature en ligne aux bourses CSC pour étudier en Chine.")]},
+  JP:{prog:[R_("Study in Japan (bourses MEXT)","https://www.studyinjapan.go.jp","Portail officiel des études au Japon et bourses du gouvernement.")]},
+  KR:{prog:[R_("Study in Korea (bourses GKS)","https://www.studyinkorea.go.kr","Portail officiel des études en Corée et bourses du gouvernement.")]},
+  TR:{prog:[R_("Türkiye Bursları","https://www.turkiyeburslari.gov.tr","Bourses complètes du gouvernement turc.")]},
+  AU:{prog:[R_("Australia Awards Africa","https://australiaawardsafrica.org","Bourses du gouvernement australien pour les Africains.")],emploi:[R_("Workforce Australia","https://www.workforceaustralia.gov.au","Service public australien de l'emploi.")]},
+  MA:{prog:[R_("AMCI : bourses","https://www.amci.ma","Agence marocaine de coopération internationale : bourses pour étudiants africains.")],emploi:[R_("ANAPEC","https://www.anapec.org","Agence nationale de promotion de l'emploi.")]},
+  CI:{emploi:[R_("Agence Emploi Jeunes","https://agenceemploijeunes.ci","Agence publique ivoirienne pour l'emploi des jeunes.")]},
+  TG:{fac:[R_("voyage.gouv.tg","https://voyage.gouv.tg","Visa et déclaration de voyage obligatoire pour entrer au Togo.")],emploi:[R_("ANPE Togo","https://anpetogo.org","Agence nationale pour l'emploi du Togo.")]}
+};
+/* Consular appointments from Lomé (verified) */
+const RDV_TG={
+  FR:[R_("Rendez-vous Capago (via France-Visas)","https://france-visas.gouv.fr/fr/togo","Toute personne résidant au Togo prend rendez-vous au centre Capago de Lomé.")],
+  DE:[R_("Auslandsportal (demande en ligne)","https://digital.diplo.de/","Demande en ligne, puis rendez-vous à l'ambassade d'Allemagne à Lomé."),R_("Ambassade d'Allemagne à Lomé","https://lome.diplo.de/","Prise de rendez-vous en ligne, gratuite. Places très limitées.")],
+  US:[R_("Ambassade des États-Unis au Togo","https://tg.usembassy.gov/","Paiement préalable des frais, puis réservation avec le code-barres DS-160.")],
+  CA:[R_("Biométrie (IRCC)","https://www.canada.ca/fr/immigration-refugies-citoyennete/services/visiter-canada.html","Après paiement, la lettre de biométrie indique le centre où te présenter.")],
+  CN:[R_("COVA puis ambassade de Chine à Lomé","https://cova.mfa.gov.cn/","Formulaire en ligne obligatoire avant le dépôt à la section consulaire.")]
+};
+const GLOBAL={emploi:[R_("ONU : carrières","https://careers.un.org","Offres des Nations unies dans le monde entier.")],heberg:[R_("Booking.com","https://www.booking.com","Hôtels et appartements pour un court séjour. Réservation annulable utile pour le dossier visa.","p"),R_("Airbnb","https://www.airbnb.fr","Logements chez l'habitant ou appartements entiers.","p")]};
+
+/* ---------- Where to get each document ---------- */
+const S_=q=>"https://www.google.com/search?q="+encodeURIComponent(q);
+const DOCS=[
+  {re:/certificat de nationalit/i,tg:true,l:[R_("Service public du Togo","https://service-public.gouv.tg","Demande en ligne du certificat de nationalité, ouverte depuis le 13 décembre 2024.")]},
+  {re:/acte de naissance/i,tg:true,l:[R_("Service public du Togo","https://service-public.gouv.tg","Copies d'actes d'état civil en ligne, d'abord dans 5 communes pilotes (déc. 2025). Sinon, mairie du lieu de naissance.")]},
+  {re:/nouveau passeport|Passeport ordinaire|Passeport ou carte/i,tg:true,l:[R_("DGDN : passeport","https://dgdn.gouv.tg","Pré-demande en ligne, puis empreintes à la DGDN à Lomé. 30 000 FCFA.")]},
+  {re:/contrat d'apprentissage|contrat d'ausbildung/i,l:[R_("Offres d'Ausbildung (Agence fédérale)","https://www.arbeitsagentur.de/jobsuche/","Cherche les places d'Ausbildung (filtre « Ausbildung ») et postule directement auprès de l'entreprise."),R_("Make it in Germany : formation","https://www.make-it-in-germany.com","Guide officiel de l'Ausbildung pour les étrangers.")]},
+  {re:/langue allemande|allemand B1|niveau B1/i,l:[R_("Goethe-Institut Togo : examens","https://www.goethe.de/ins/tg/fr/spr/prf.html","Examens Goethe A1 à C2 à Lomé. 25, rue Kokéti, angle rue de l'Église. Tél. +228 70 30 99 99.")]},
+  {re:/compte bloqu|preuve de ressources|ressources \(montant/i,l:[R_("Compte bloqué (Auswärtiges Amt)","https://www.auswaertiges-amt.de/fr/service/visa-und-einreise/sperrkonto/388600","Liste officielle des prestataires de compte bloqué. Aucune banque togolaise ne propose ce service selon l'ambassade.")]},
+  {re:/logement en allemagne/i,l:[R_("Studierendenwerke","https://www.studierendenwerke.de","Résidences étudiantes."),R_("WG-Gesucht","https://www.wg-gesucht.de","Colocations et studios.","p")]},
+  {re:/diplômes|relevés de notes/i,l:[R_("Reconnaissance des diplômes (Allemagne)","https://www.anerkennung-in-deutschland.de","Vérifie si ton diplôme est reconnu et comment le faire reconnaître.")]},
+  {re:/attestation d'accueil/i,l:[R_("Attestation d'accueil (Service-public.fr)","https://www.service-public.fr/particuliers/vosdroits/F2191","Ton hôte en France la demande à sa mairie.")]},
+  {re:/Études en France|Admission ou pré-inscription|Dossier de candidature/i,l:[R_("Plateforme Études en France","https://pastel.diplomatie.gouv.fr/etudesenfrance/","Candidature en ligne obligatoire pour les étudiants togolais."),R_("Campus France","https://www.campusfrance.org/fr","Choisir sa formation et préparer l'entretien.")]},
+  {re:/assurance voyage|assurance maladie/i,loc:true,l:[R_("Compagnies d'assurance au Togo",S_("assurance voyage Schengen Lomé Togo compagnie"),"Allianz, NSIA ou SUNU proposent des assurances voyage à Lomé. Vérifie que la couverture atteint 30 000 € pour Schengen.","w")]},
+  {re:/réservation de vol|vol aller-retour|billet de retour/i,loc:true,l:[R_("Comparer les vols",S_("billet d'avion Lomé réservation annulable"),"Une réservation annulable suffit souvent pour le dossier ; n'achète le billet qu'après le visa.","w")]},
+  {re:/réservation d'hôtel|réservations d'hôtel|hôtel ou|Hébergement/i,l:[R_("Booking.com","https://www.booking.com","Choisis une réservation annulable sans prépaiement.","p")]},
+  {re:/lettre de motivation/i,l:[R_("Générateur de lettre (panneau de droite)","#letter","Remplis le formulaire : la lettre se met à jour toute seule.","i")]},
+  {re:/registre de commerce/i,tg:true,l:[R_("Centre de formalités des entreprises (Togo)",S_("CFE Togo registre du commerce extrait"),"Extrait du registre du commerce délivré au CFE à Lomé.","w")]},
+  {re:/fièvre jaune|vaccination/i,loc:true,l:[R_("Vaccination fièvre jaune à Lomé",S_("centre vaccination fièvre jaune Lomé carnet international"),"Carnet international délivré par les centres de vaccination agréés.","w")]},
+  {re:/traductions certifiées/i,loc:true,l:[R_("Traducteur agréé",S_("traducteur assermenté agréé Lomé"),"Fais traduire par un traducteur agréé près les tribunaux.","w")]},
+  {re:/DS-160/i,l:[R_("Formulaire DS-160","https://ceac.state.gov/genniv/","Site officiel du Département d'État.")]},
+  {re:/COVA/i,l:[R_("COVA","https://cova.mfa.gov.cn/","Formulaire officiel de demande de visa chinois.")]},
+  {re:/licence de l'entreprise|lettre d'invitation de l'entreprise/i,l:[R_("Demande à ton fournisseur","#","À réclamer à l'entreprise chinoise qui t'invite, avec sa licence (营业执照).","i")]},
+  {re:/France-Visas/i,l:[R_("France-Visas","https://france-visas.gouv.fr/fr/togo","Formulaire officiel.")]},
+  {re:/VIDEX/i,l:[R_("VIDEX","https://videx.diplo.de/","Formulaire Schengen pour l'Allemagne.")]},
+  {re:/Compte IRCC/i,l:[R_("IRCC","https://www.canada.ca/fr/immigration-refugies-citoyennete/services/visiter-canada.html","Création du compte et demande en ligne.")]}
+];
+function docLinks(item){
+  const out=[],seen=new Set();DOCS.forEach(r=>{if(r.re.test(item)&&(!r.tg||state.o==="TG")&&(!r.loc||residence()==="TG"))r.l.forEach(x=>{if(!seen.has(x.t)){seen.add(x.t);out.push(x)}})});
+  return out;
+}
+const LANG_TESTS=[
+  R_("Goethe-Institut Togo (allemand)","https://www.goethe.de/ins/tg/fr/spr/prf.html","Examens Goethe A1 à C2. 25, rue Kokéti, Lomé. Tél. +228 70 30 99 99."),
+  R_("Institut français du Togo (français)",S_("Institut français du Togo TCF TEF Canada DELF inscription"),"Organise le TCF Canada, le TEF Canada et le DELF/DALF (calendrier 2026 publié en mars).","w"),
+  R_("IELTS au Togo (British Council)","https://britishcouncil.org.gh/exam/ielts/dates-fees-locations/togo","Dates, tarifs et lieux de l'IELTS à Lomé."),
+  R_("HSK (chinois)",S_("HSK examen Lomé Institut Confucius Université de Lomé"),"Examen de chinois, en général organisé par l'Institut Confucius.","w")
+];
+
+/* ---------- Embassies (from Lomé) ---------- */
+const EMB_LOME={
+  FR:{n:"Ambassade de France au Togo",a:["13, avenue Mama Fousséni, BP 337, Lomé","Tél. +228 22 23 46 00","Visas : centre Capago de Lomé, sur rendez-vous"],u:"https://france-visas.gouv.fr/fr/togo"},
+  DE:{n:"Ambassade d'Allemagne",a:["Boulevard de la République, BP 1175, Lomé","Tél. +228 22 23 32 32","visa@lome.diplo.de"],u:"https://lome.diplo.de/"},
+  US:{n:"Ambassade des États-Unis",a:["4332, boulevard Eyadema, Cité OUA, BP 852, Lomé","Tél. +228 22 61 54 70","ConsularLome@state.gov"],u:"https://tg.usembassy.gov/"},
+  CN:{n:"Ambassade de Chine",a:["Cité OUA, BP 2690, Lomé","Appelle avant de te déplacer : horaires de dépôt à confirmer"],u:"http://tg.chineseembassy.org"},
+  IN:{n:"Ambassade de l'Inde",a:["Lomé"],u:"https://embassyofindialome.gov.in"},
+  CA:{n:"Haut-commissariat du Canada au Ghana (compétent pour le Togo)",a:["42, Independence Avenue, Accra, Ghana","Pas de bureau canadien à Lomé. Visas : demande en ligne IRCC"],u:"https://www.canada.ca/fr/immigration-refugies-citoyennete/services/visiter-canada.html"}
+};
+const RESIDENT_LOME=new Set("FR DE US CN IN GH NG EG LY GA BR TR BF".split(" "));
+const ACCRED={DZ:"Accra",AO:"Accra",AR:"Abuja",AU:"Accra",AT:"Abuja",BD:"Abuja",BE:"Cotonou",BJ:"Cotonou",BW:"Abuja",BG:"Abuja",BI:"Abuja",CM:"Abidjan",CV:"Dakar",CF:"Abuja",HR:"Paris",CU:"Cotonou",CZ:"Accra",DK:"Accra",DJ:"Addis-Abeba",GQ:"Abuja",FI:"Abuja",GR:"Abuja",GN:"Accra",GW:"Conakry",IR:"Accra",IQ:"Abuja",IE:"Abuja",IL:"Abidjan",ID:"Abuja",IT:"Accra",CI:"Accra",JP:"Abidjan",JO:"Abuja",KE:"Abuja",KW:"Cotonou",LB:"Abuja",LU:"Cotonou",ML:"Accra",MY:"Accra",MX:"Abuja",MA:"Cotonou",NL:"Accra",NZ:"Le Caire",NO:"Abuja",OM:"Abuja",PK:"Accra",PH:"Abuja",PL:"Abuja",PT:"Abuja",RO:"Abuja",RU:"Cotonou",RW:"Accra",SA:"Accra",SL:"Accra",SK:"Abuja",ZA:"Abidjan",KR:"Accra",ES:"Accra",SE:"Abuja",CH:"Accra",TZ:"Abuja",TH:"Abuja",TN:"Abidjan",AE:"Accra",GB:"Accra",VE:"Cotonou",VN:"Abuja",ZM:"Accra",ZW:"Abuja"};
+const TL={E:"Ambassade",H:"Haut-commissariat",G:"Consulat général",C:"Consulat",O:"Consulat honoraire",D:"Bureau de représentation",F:"Bureau consulaire",N:"Nonciature apostolique"};
+const TPRI={E:0,H:0,D:1,G:2,C:3,F:4,O:5,N:6};
+function covers(m,h){const j=m[7];for(let i=0;i<j.length;i+=2)if(j.substr(i,2)===h)return true;return false}
+function missionsOf(op,host){
+  const all=EMBDB[op]||[];
+  const inC=all.filter(m=>m[0]===host).sort((a,b)=>TPRI[a[6]]-TPRI[b[6]]);
+  const acc=all.filter(m=>m[0]!==host&&covers(m,host)).sort((a,b)=>TPRI[a[6]]-TPRI[b[6]]);
+  return inC.length?inC.concat(acc.filter(m=>m[6]==="E"||m[6]==="H").slice(0,1)):acc;
+}
+function missionCard(op,host,m){
+  const [c,city,lat,lng,ph,web,t]=m;
+  const place=(city?city+", ":"")+nm(c);
+  const addr=[place];
+  if(ph)addr.push("Tél. "+ph);
+  if(web){try{addr.push("Site : "+new URL(web).hostname.replace(/^www\./,""))}catch(e){}}
+  const out=c!==host?`Située hors du pays, compétente pour ${nm(host)}.`:"";
+  return {t:`${TL[t]} · ${nm(op)}`,u:(lat!==null&&lng!==null)?M_(`${lat},${lng}`):M_(`${TL[t]} ${nm(op)} ${place}`),addr,d:(out?out+" ":"")+"Emplacement : base ouverte Wikidata (2024), appelle avant de te déplacer.",k:"m"};
+}
+function embassyCards(){
+  const o=state.o,d=state.d,res=residence(),L=[];
+  if(res===d&&o!==d){
+    L.push({t:`Tu es déjà sur place : ${nm(d)}`,u:S_(`service immigration ${nm(d)} prolongation titre de séjour étrangers`),d:"Pour prolonger ton séjour ou changer de statut, adresse-toi au service d'immigration du pays (voir aussi l'onglet Sur place).",k:"w"});
+    return L;
+  }
+  if(o===d)return L;
+  if(res==="TG"&&EMB_LOME[d]){const e=EMB_LOME[d];L.push({t:e.n,u:e.u,d:"",addr:e.a,k:"o"});return L}
+  const M=missionsOf(d,res);
+  if(M.length){M.slice(0,4).forEach(m=>L.push(missionCard(d,res,m)));}
+  else L.push({t:`Représentation de destination : ${nm(d)}`,u:S_(`ambassade ${nm(d)} compétente pour ${nm(res)} visa`),d:`Aucune représentation répertoriée pour ce pays de séjour (${nm(res)}). Cherche celle qui est compétente, souvent dans un pays voisin.`,k:"w"});
+  if(res==="TG"&&!RESIDENT_LOME.has(d)&&SCHENGEN.has(d))L.push({t:"Visa Schengen depuis le Togo",u:"https://france-visas.gouv.fr/fr/togo",d:"Si ce pays n'est pas représenté à Lomé, un autre pays Schengen peut traiter la demande à sa place. Renseigne-toi auprès de Capago ou de l'ambassade d'Allemagne.",k:"w"});
+  return L;
+}
+const M_=q=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);
+const TOGO_MISSIONS={
+  FR:{n:"Ambassade du Togo en France",a:["8, rue Alfred Roll, 75017 Paris","Tél. +33 1 43 80 12 13","france@ambassadetogo.org"],u:"http://www.ambassadetogo.org",q:"Ambassade du Togo 8 rue Alfred Roll Paris"},
+  DE:{n:"Ambassade du Togo en Allemagne",a:["Grabbeallee 43, 13156 Berlin","Tél. +49 30 499 089 68","allemagne@diplomatie.gouv.tg","Lun.–ven. 9 h–13 h et 14 h–16 h"],u:"http://www.ambatogoberlin.de",q:"Botschaft Togo Grabbeallee 43 Berlin"},
+  GB:{n:"Haut-commissariat du Togo au Royaume-Uni",a:["Units 3, 7 & 8 Lysander Mews, Lysander Grove, London N19 3QP","Tél. +44 20 7263 7522","contact@togohclondon.org"],u:"https://togohclondon.org",q:"Togo High Commission Lysander Mews London"},
+  BE:{n:"Ambassade du Togo en Belgique",a:["Avenue de Tervuren 264, 1150 Bruxelles","Tél. +32 2 770 17 91"],q:"Ambassade du Togo Avenue de Tervuren 264 Bruxelles"},
+  CN:{n:"Ambassade du Togo en Chine",a:["11, Dongzhimenwai Dajie, Pékin","Tél. +86 10 6532 2202"],q:"Embassy of Togo Dongzhimenwai Beijing"}
+};
+const TOGO_CITY={US:"Washington",CA:"Ottawa",BR:"Brasília",MA:"Rabat",GH:"Accra",NG:"Abuja",ZA:"Pretoria",GA:"Libreville",ET:"Addis-Abeba",CD:"Kinshasa",BF:"Ouagadougou (consulat général)",IN:"New Delhi",JP:"Tokyo",KW:"Koweït",QA:"Doha",SA:"Djeddah (consulat général)",TR:"Ankara",AE:"Abou Dhabi",RU:"Moscou",CH:"Genève (mission auprès de l'ONU)"};
+const ARRIVAL={
+  FR:[R_("Valider ton visa long séjour (ANEF)","https://administration-etrangers-en-france.interieur.gouv.fr","Un visa long séjour valant titre de séjour se valide en ligne dans les 3 mois suivant l'arrivée."),R_("OFII","https://www.ofii.fr","Accueil des nouveaux arrivants et parcours d'intégration.")],
+  DE:[R_("Déclarer ton adresse (Anmeldung)","https://www.make-it-in-germany.com","Inscris ton domicile au Bürgeramt dans les 14 jours, puis prends rendez-vous à l'Ausländerbehörde avant la fin de ton visa.")],
+  CA:[R_("Numéro d'assurance sociale (NAS)","https://www.canada.ca/fr/emploi-developpement-social/services/numero-assurance-sociale.html","Indispensable pour travailler au Canada.")],
+  GB:[R_("Ton eVisa (UKVI)","https://www.gov.uk/guidance/online-immigration-status-evisa","Ton statut d'immigration est numérique : crée ou vérifie ton compte UKVI.")],
+  US:[R_("Social Security (SSA)","https://www.ssa.gov","Numéro de sécurité sociale, si tu es autorisé à travailler.")],
+  TG:[R_("voyage.gouv.tg","https://voyage.gouv.tg","Formalités d'entrée et de séjour au Togo.")]
+};
+const EMERG={US:"911",CA:"911",MX:"911",GB:"999 ou 112",CN:"110 police · 120 ambulance · 119 pompiers",JP:"110 police · 119 ambulance et pompiers",AU:"000",NZ:"111",IN:"112"};
+function emergency(c){
+  const E=EMERGDB[c];
+  if(!E){if(SCHENGEN.has(c)||["CY","IE"].includes(c))return "112";return null}
+  const [p,a,f]=E.map(x=>x&&x!=="0"?x:"");
+  if(p&&p===a&&a===f)return p;
+  return [p&&"Police "+p,a&&"Ambulance "+a,f&&"Pompiers "+f].filter(Boolean).join(" · ")||null;
+}
+function onSiteCards(){
+  const o=state.o,H=residence(),L=[];
+  if(H===o){L.push({t:"Tu es dans ton pays",u:"#",d:"Cet onglet s'active quand tu te trouves dans un autre pays. Choisis-le dans « Tu es actuellement » pour préparer ton arrivée.",k:"i"});return L}
+  const v=o==="TG"?TOGO_MISSIONS[H]:null;
+  if(v){L.push({t:v.n,u:v.u||M_(v.q),addr:v.a,d:"Adresse vérifiée le 08.10.2026.",k:"o"});L.push({t:"Itinéraire vers l'ambassade",u:M_(v.q),d:"Ouvre la carte avec l'adresse.",k:"m"})}
+  const M=missionsOf(o,H).filter(m=>!(v&&m[0]===H&&(m[6]==="E"||m[6]==="H")));
+  M.slice(0,v?2:4).forEach(m=>L.push(missionCard(o,H,m)));
+  if(!v&&!M.length){
+    if(o==="TG"&&TOGO_CITY[H])L.push({t:`Représentation du Togo : ${TOGO_CITY[H]}`,u:M_(`Ambassade du Togo ${TOGO_CITY[H].split(" (")[0]}`),d:"Adresse affichée à jour sur la carte. Appelle avant de te déplacer.",k:"m"});
+    else L.push({t:`Représentation de ton pays (${nm(o)})`,u:M_(`ambassade ${nm(o)} ${nm(H)}`),d:"Aucune représentation répertoriée : la carte et la recherche t'aident à trouver la plus proche, parfois dans un pays voisin.",k:"m"});
+  }
+  L.push({t:"Inscription consulaire",u:"#",d:`Signale ta présence à la représentation de ton pays (${nm(o)}) : elle peut t'aider en cas de perte de passeport, d'accident ou de crise.`,k:"i"});
+  (ARRIVAL[H]||[R_(`Démarches à l'arrivée (${nm(H)})`,S_(`démarches à l'arrivée étrangers titre de séjour ${nm(H)} site officiel`),"Titre de séjour, enregistrement de l'adresse, numéro fiscal ou social : vérifie les règles du pays.","w")]).forEach(x=>L.push(x));
+  const e=emergency(H);
+  L.push({t:"Numéros d'urgence",u:e?"#":S_(`numéro d'urgence ${nm(H)} police ambulance`),d:e?`${nm(H)} · ${e}. Source : Wikipédia, à vérifier sur place.`:"Numéro local à vérifier : demande-le aussi à ton hébergement.",k:e?"i":"w"});
+  [["Pharmacie","pharmacie"],["Hôpital ou urgences","hôpital urgences"],["Commissariat de police","police"],["Transfert d'argent","transfert d'argent Western Union MoneyGram"],["Mairie / services municipaux","mairie"]].forEach(([t,q])=>L.push({t:`${t} près de toi`,u:M_(q),d:"La carte s'ouvre centrée sur ta position si tu l'autorises dans l'application Cartes.",k:"m"}));
+  return L;
+}const TABS=[["visa","Démarches visa"],["papiers","Papiers"],["rdv","Audiences"],["fac","Facilités"],["prog","Programmes"],["emploi","Offres d'emploi"],["heberg","Hébergement"],["vols","Vols"],["surplace","Sur place"]];
+const TAB_INTRO={
+  vols:"Compare les vols entre l'aéroport le plus proche de toi et ta destination, aux prix du jour.",
+  surplace:"Une fois arrivé·e : l'ambassade de ton pays, les démarches d'arrivée, les urgences et les services autour de toi. Se met à jour selon le pays où tu te trouves.",
+  papiers:"Chaque pièce de ton dossier et où l'obtenir, plus les centres d'examens de langue.",
+  rdv:"Rendez-vous consulaires pour déposer ta demande ou passer ton entretien.",
+  fac:"Ce qui simplifie ton entrée et ton installation : exemptions, accueil des nouveaux arrivants, reconnaissance des diplômes.",
+  prog:"Programmes officiels pour étudier, travailler ou immigrer : bourses, visas de recherche d'emploi, résidence permanente.",
+  emploi:"Portails publics de l'emploi et grandes plateformes d'offres.",
+  heberg:"Où te loger : court séjour, logement étudiant, location."
+};
+const SEARCHQ={
+  vols:(d,o)=>`vols ${nm(residence())} ${nm(d)}`,
+  surplace:(d,o)=>`démarches à l'arrivée étrangers ${nm(residence())} site officiel`,
+  papiers:(d,o)=>`liste des documents visa ${nm(d)} ressortissants ${nm(o)} site officiel`,
+  rdv:(d,o)=>`prise de rendez-vous visa ambassade ${nm(d)} ${nm(o)}`,
+  fac:(d,o)=>`accueil nouveaux arrivants étrangers ${nm(d)} site officiel gouvernement`,
+  prog:(d,o)=>`bourses programmes immigration ${nm(d)} pour ressortissants ${nm(o)} site officiel`,
+  emploi:(d,o)=>`agence nationale pour l'emploi ${nm(d)} offres d'emploi site officiel`,
+  heberg:(d,o)=>`logement étudiant location ${nm(d)} site officiel`
+};
+const AIQ={
+  vols:(d,o)=>`Je cherche un vol de ${nm(residence())} vers ${nm(d)}. Quelles compagnies desservent cette route, et que dois-je vérifier avant d'acheter (visa, transit, bagages) ?`,
+  surplace:(d,o)=>`Je viens d'arriver : ${nm(residence())}. Je suis ressortissant ${adj(o)}. Quelles démarches dois-je faire dans les premiers jours ?`,
+  papiers:(d,o)=>`Pour mon dossier vers ${nm(d)}, où obtenir chaque pièce qui me manque, quand on est ressortissant ${adj(o)} ?`,
+  rdv:(d,o)=>`Où et comment prendre rendez-vous pour un visa ${nm(d)} quand on est ressortissant ${adj(o)} ?`,
+  fac:(d,o)=>`Quelles facilités d'entrée et d'installation existent pour un ressortissant ${adj(o)} qui part à destination de ${nm(d)} ?`,
+  prog:(d,o)=>`Quels programmes officiels (bourses, travail, immigration) existent pour aller vers ${nm(d)} depuis ${nm(o)} ?`,
+  emploi:(d,o)=>`Comment trouver un emploi légal à destination de ${nm(d)} depuis ${nm(o)}, et quel visa faut-il ?`,
+  heberg:(d,o)=>`Comment trouver un logement fiable à destination de ${nm(d)} et éviter les arnaques ?`
+};
+function facts(o,d,r){
+  const F=[];
+  const L={free:`Entrée sans visa${r.days?" jusqu'à "+r.days+" jours":""} pour ton passeport.`,arr:"Visa délivré à l'arrivée : pas de démarche en ambassade.",eta:"Simple autorisation électronique en ligne avant le départ.",evisa:"Demande de visa entièrement en ligne (e-visa).",req:"Visa obligatoire : aucune exemption pour ton passeport en court séjour.",no:"Entrée suspendue pour ton passeport.",self:"C'est ton pays."};
+  if(L[r.k])F.push({t:"Exigence de visa",d:L[r.k],k:r.k==="req"||r.k==="no"?"info":"ok"});
+  if(ECOWAS.has(o)&&ECOWAS.has(d)&&o!==d)F.push({t:"Libre circulation CEDEAO",d:"Séjour court sans visa avec passeport ou carte d'identité acceptée. Droit d'établissement prévu par les protocoles CEDEAO.",k:"ok"});
+  if(r.note==="togo")F.push({t:"Exemption pour les Africains",d:"Depuis le 18 mai 2026 : 30 jours sans visa, déclaration sur voyage.gouv.tg au moins 24 h avant l'arrivée.",k:"ok"});
+  if(SCHENGEN.has(d))F.push({t:"Espace Schengen",d:"Un visa Schengen délivré par un pays membre permet de circuler dans les 29 pays de l'espace, jusqu'à 90 jours sur 180.",k:"ok"});
+  if(r.note==="uspart")F.push({t:"Restriction américaine",d:"Visas B-1/B-2, F, M, J et d'immigrant suspendus pour ta nationalité depuis le 1er janvier 2026, sauf exceptions.",k:"info"});
+  return F;
+}
+function resources(tab){
+  const o=state.o,d=state.d,base=RES[d]||{};let L=[];
+  if(tab==="surplace"){ L=onSiteCards(); if(residence()!==state.o) L.push(R_(`Rechercher sur le web (${nm(residence())})`,S_(SEARCHQ.surplace(d,o)),"Recherche web ciblée.","w")); return L; }
+  if(tab==="papiers"){ const seen=new Set();CUR.g.steps.forEach(st=>st.c.forEach(it=>docLinks(it).forEach(x=>{if(!seen.has(x.t)){seen.add(x.t);L.push(x)}})));L=L.filter(x=>x.k!=="i"); if(o==="TG")L.push(...LANG_TESTS); }
+  else if(tab==="rdv"){ L=embassyCards(); if(residence()==="TG"&&RDV_TG[d]) L.push(...RDV_TG[d]); else L.push(...(OFF[d]||[]).map(x=>R_(x.t,x.u,"Site officiel de la destination : formulaires et prise de rendez-vous."))); }
+  else { L=[...(base[tab]||[])]; if(SCHENGEN.has(d)||["BG","RO","HR","CY","IE"].includes(d)){ if(EU_LINKS[tab])L.push(...EU_LINKS[tab]); } if(GLOBAL[tab])L.push(...GLOBAL[tab]); }
+  if(tab==="fac"&&!L.length&&OFF[d]) L=OFF[d].map(x=>R_(x.t,x.u,"Site officiel : conditions d'entrée et de séjour."));
+  L.push(R_(`Rechercher sur le web (${nm(d)})`,"https://www.google.com/search?q="+encodeURIComponent(SEARCHQ[tab](d,o)),"Recherche web ciblée. Privilégie les sites en .gov ou ceux des ambassades.","w"));
+  return L;
+}
+function countFor(tab){if(tab==="visa"||tab==="vols")return null;const n=resources(tab).filter(x=>x.k!=="w").length+(tab==="fac"?facts(state.o,state.d,CUR.r).length:0);return n}
+function renderTabs(){
+  $("#spaceTitle").textContent=`Espace pays · ${nm(state.d)}`;
+  const box=$("#tabs");box.textContent="";
+  TABS.forEach(([k,l])=>{
+    const b=document.createElement("button");b.className="tab";b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",state.tab===k);
+    b.textContent=l;if(k==="vols")b.classList.add("tab-vols");const n=countFor(k);if(n!==null){const s=document.createElement("span");s.className="n";s.textContent=n;b.append(s)}
+    b.onclick=()=>{state.tab=k;save();renderAll(true)};
+    box.append(b);
+  });
+}
+function ymd(v){return v||""}
+function addDays(n){const d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)}
+function flightLinks(f){
+  const A=f.from,B=f.to,dep=form.dep||"",ret=f.trip==="rt"?(form.ret||""):"",pax=f.pax||1;
+  const yy=v=>v?v.slice(2).replace(/-/g,""):"";
+  let gq=`Flights from ${A} to ${B}`;if(dep)gq+=` on ${dep}`;if(ret)gq+=` through ${ret}`;if(f.trip!=="rt")gq+=" one way";
+  const g="https://www.google.com/travel/flights?hl=fr&q="+encodeURIComponent(gq);
+  let sk=`https://www.skyscanner.net/transport/flights/${A.toLowerCase()}/${B.toLowerCase()}/`;
+  if(dep){sk+=yy(dep)+"/";if(ret)sk+=yy(ret)+"/"}sk+=`?adultsv2=${pax}&cabinclass=economy`;
+  const kd=dep||addDays(30);let k=`https://www.kayak.fr/flights/${A}-${B}/${kd}`;if(f.trip==="rt")k+="/"+(ret||addDays(44));k+=`/${pax}adults`;
+  return [
+    {t:"Google Flights",u:g,d:"Calendrier des prix et alertes de baisse de prix.",k:"p"},
+    {t:"Skyscanner",u:sk,d:`Compare compagnies et agences en ligne, ${pax} passager${pax>1?"s":""}.`,k:"p"},
+    {t:"Kayak",u:k,d:dep?"Résultats aux dates choisies.":"Dates provisoires (dans 30 jours) : ajuste-les sur le site.",k:"p"}
+  ];
+}
+function renderFlights(P){
+  const H=residence(),D=state.d;
+  const fromL=AIRDB[H]||[],toL=AIRDB[D]||[];
+  if(!state.fl)state.fl={};
+  const f=state.fl;
+  if(!fromL.some(a=>a[0]===f.from))f.from=fromL[0]?fromL[0][0]:"";
+  if(!toL.some(a=>a[0]===f.to))f.to=toL[0]?toL[0][0]:"";
+  f.trip=f.trip||"rt";f.pax=f.pax||1;
+  if(!fromL.length||!toL.length){const n=document.createElement("p");n.className="note";n.textContent="Pas d'aéroport à vols réguliers répertorié pour l'un des deux pays : passe par un pays voisin ou utilise la recherche web.";P.append(n)}
+  const box=document.createElement("div");box.className="res-head";
+  box.innerHTML=`<div class="fl-grid">
+    <label>Départ<select id="fl_from"></select></label>
+    <label>Arrivée<select id="fl_to"></select></label>
+    <label>Voyage<select id="fl_trip"><option value="rt">Aller-retour</option><option value="ow">Aller simple</option></select></label>
+    <label>Passagers<select id="fl_pax"></select></label>
+    <label>Départ le<input type="date" id="fl_dep"></label>
+    <label id="fl_retw">Retour le<input type="date" id="fl_ret"></label>
+  </div><p class="muted">Les dates sont partagées avec la lettre de motivation. Les prix et la réservation se font sur le site choisi.</p>`;
+  P.append(box);
+  const opt=(sel,L)=>L.forEach(([c,city])=>{const o=document.createElement("option");o.value=c;o.textContent=`${city} (${c})`;sel.append(o)});
+  const sf=box.querySelector("#fl_from"),st=box.querySelector("#fl_to"),sp=box.querySelector("#fl_pax");
+  opt(sf,fromL);opt(st,toL);for(let i=1;i<=9;i++){const o=document.createElement("option");o.value=i;o.textContent=i;sp.append(o)}
+  sf.value=f.from;st.value=f.to;box.querySelector("#fl_trip").value=f.trip;sp.value=f.pax;
+  box.querySelector("#fl_dep").value=form.dep||"";box.querySelector("#fl_ret").value=form.ret||"";
+  const cards=document.createElement("div");cards.className="cards";
+  const notes=document.createElement("div");notes.className="fl-notes";
+  P.append(cards,notes);
+  const upd=()=>{
+    box.querySelector("#fl_retw").hidden=f.trip!=="rt";
+    cards.textContent="";if(f.from&&f.to)flightLinks(f).forEach(x=>cards.append(card(x)));
+    cards.append(card(R_(`Rechercher sur le web`,S_(`vols ${f.from} ${f.to} compagnies aériennes`),"Compagnies qui desservent la route et vols directs.","w")));
+  };
+  const save2=()=>{save();upd()};
+  sf.onchange=()=>{f.from=sf.value;save2()};st.onchange=()=>{f.to=st.value;save2()};
+  box.querySelector("#fl_trip").onchange=e=>{f.trip=e.target.value;save2()};sp.onchange=()=>{f.pax=+sp.value;save2()};
+  box.querySelector("#fl_dep").oninput=e=>{form.dep=e.target.value;store.set("dv_form",form);$("#f_dep").value=form.dep;renderLetter();upd()};
+  box.querySelector("#fl_ret").oninput=e=>{form.ret=e.target.value;store.set("dv_form",form);$("#f_ret").value=form.ret;renderLetter();upd()};
+  upd();
+  const r=CUR.r,N=[];
+  if(r.k==="no")N.push(["alert","Entrée suspendue pour ton passeport : n'achète pas de billet vers cette destination."]);
+  if(r.note==="uspart")N.push(["alert","Visas visiteurs, étudiants et d'immigrant suspendus pour ta nationalité : n'achète aucun billet sans visa déjà obtenu."]);
+  else if(r.k==="req"||r.k==="evisa"||r.k==="eta")N.push(["warn",`${LABEL[r.k]} pour cette destination. Pour le dossier, une réservation annulable suffit souvent. N'achète un billet non remboursable qu'après avoir obtenu ${r.k==="eta"?"l'autorisation":"le visa"}.`]);
+  N.push(["warn","Escale : certains pays exigent un visa de transit, même sans sortir de l'aéroport. Vérifie le pays d'escale en le choisissant comme destination dans l'application."]);
+  N.push(["scam","Vérifie toujours ton billet sur le site de la compagnie avec ton numéro de réservation (code à 6 caractères). Ne paie jamais une « agence » par transfert d'argent à un particulier."]);
+  N.push(["good","À l'embarquement : passeport valide, visa ou autorisation, billet retour, preuve d'hébergement et assurance. La compagnie peut refuser l'embarquement s'il manque un document."]);
+  N.forEach(([k,t])=>{const n=document.createElement("p");n.className="note"+(k==="alert"||k==="scam"?" scam":k==="good"?" good":"");n.textContent=t;notes.append(n)});
+}
+function card(x){
+  const a=document.createElement(x.u==="#"?"div":"a");a.className="card";if(x.u!=="#"){a.href=x.u;a.target="_blank";a.rel="noopener"}
+  const b=document.createElement("span");b.className="badge "+({o:"b-off",p:"b-priv",w:"b-web",m:"b-map",i:"b-info"})[x.k];b.textContent=({o:"Officiel",p:"Plateforme privée",w:"Recherche web",m:"Carte",i:"À savoir"})[x.k];
+  const t=document.createElement("span");t.className="ct";t.textContent=x.t;
+  a.append(b,t);
+  if(x.addr){const ad=document.createElement("span");ad.className="addr";x.addr.forEach(line=>{const s=document.createElement("span");s.textContent=line;ad.append(s)});a.append(ad)}
+  if(x.d){const d=document.createElement("span");d.className="cd";d.textContent=x.d;a.append(d)}
+  const dom=document.createElement("span");dom.className="dom";try{if(x.u!=="#"){const U=new URL(x.u);const h=U.hostname.replace(/^www\./,"");dom.textContent=U.pathname.startsWith("/maps")?"Google Maps":h==="google.com"?"recherche Google":h}}catch(e){}
+  a.append(dom);return a;
+}
+function renderResources(){
+  const tab=state.tab,P=$("#resPane");P.textContent="";
+  const head=document.createElement("div");head.className="res-head";
+  const h=document.createElement("h2");h.textContent=`${TABS.find(t=>t[0]===tab)[1]} · ${nm(tab==="surplace"?residence():state.d)}`;
+  const p=document.createElement("p");p.className="where";p.textContent=TAB_INTRO[tab];
+  head.append(h,p);
+  if(tab==="rdv"&&residence()!=="TG"&&residence()!==state.d){const n=document.createElement("p");n.className="muted";n.textContent="Les rendez-vous dépendent du pays où tu résides. Les adresses détaillées sont vérifiées pour Lomé ; ailleurs, la carte et la recherche te donnent les adresses à jour.";head.append(n)}
+  if(tab==="emploi"&&(CUR.r.k!=="self"))
+    {const n=document.createElement("p");n.className="note";n.textContent="Une offre d'emploi ne suffit pas pour travailler : il faut en général un contrat et un visa de travail. Ne paie jamais pour obtenir une offre ou un contrat.";head.append(n)}
+  if(tab==="heberg"){const n=document.createElement("p");n.className="note scam";n.textContent="Ne verse jamais d'argent pour un logement que personne n'a pu visiter, surtout par transfert d'argent. C'est l'arnaque la plus fréquente.";head.append(n)}
+  P.append(head);
+  if(tab==="vols"){renderFlights(P);return}
+  if(tab==="fac"){
+    const ff=facts(state.o,state.d,CUR.r);
+    if(ff.length){const c=document.createElement("div");c.className="cards";ff.forEach(f=>{const d=document.createElement("div");d.className="card";const b=document.createElement("span");b.className="badge "+(f.k==="ok"?"b-off":"b-info");b.textContent=f.k==="ok"?"Facilité":"À savoir";const t=document.createElement("span");t.className="ct";t.textContent=f.t;const x=document.createElement("span");x.className="cd";x.textContent=f.d;d.append(b,t,x);c.append(d)});P.append(c)}
+  }
+  const list=resources(tab);const c=document.createElement("div");c.className="cards";list.forEach(x=>c.append(card(x)));P.append(c);
+  if(sample){const row=document.createElement("div");row.className="row";const b=document.createElement("button");b.className="btn ghost";b.type="button";b.textContent="Demander à l'assistant pour ce pays";b.onclick=()=>{$("#aiQ").value=AIQ[tab](state.d,state.o);$("#aiQ").scrollIntoView({behavior:"smooth",block:"center"});ask()};row.append(b);P.append(row)}
+}
+
+function tzOf(c){return CC2TZ[c]||"UTC"}
+function tzHere(){const H=residence();return (state.auto&&DET.tz&&TZ2CC[DET.tz]===H)?DET.tz:tzOf(H)}
+function offMin(tz,d){try{const a=new Date(d.toLocaleString("en-US",{timeZone:tz}));const b=new Date(d.toLocaleString("en-US",{timeZone:"UTC"}));return Math.round((a-b)/60000)}catch(e){return 0}}
+function fmtOff(m){const sg=m<0?"−":"+";const a=Math.abs(m);return "UTC"+sg+Math.floor(a/60)+(a%60?":"+String(a%60).padStart(2,"0"):"")}
+function fmtDiff(m){if(!m)return "même heure qu'ici";const sg=m>0?"+":"−";const a=Math.abs(m);return sg+Math.floor(a/60)+" h"+(a%60?" "+String(a%60).padStart(2,"0"):"")+" par rapport à ici"}
+function cityOf(tz){return tz.split("/").pop().replace(/_/g," ")}
+function fmtT(tz,d,o){try{return new Intl.DateTimeFormat("fr-FR",Object.assign({timeZone:tz},o)).format(d)}catch(e){return new Intl.DateTimeFormat("fr-FR",Object.assign({timeZone:"UTC"},o)).format(d)}}
+function todayIn(tz){return fmtT(tz,new Date(),{day:"numeric",month:"long",year:"numeric"})}
+let CLOCKS=[],lastDay="";
+function renderClocks(){
+  const box=$("#clocks");box.textContent="";
+  const H=residence(),list=[["Ici",H,tzHere(),true]];
+  if(state.o!==H)list.push(["Ton pays",state.o,tzOf(state.o),false]);
+  if(state.d!==H&&state.d!==state.o)list.push(["Destination",state.d,tzOf(state.d),false]);
+  CLOCKS=list.map(([l,c,tz,me])=>{
+    const el=document.createElement("div");el.className="clock"+(me?" here-clock":"");
+    const a=document.createElement("span");a.className="lbl";a.textContent=`${l} · ${nm(c)}`;
+    const t=document.createElement("span");t.className="time";
+    const dt=document.createElement("span");dt.className="date";
+    const of=document.createElement("span");of.className="off";
+    el.append(a,t,dt,of);box.append(el);
+    return {tz,me,t,dt,of,c};
+  });
+  tick();
+}
+function tick(){
+  const now=new Date(),hereTz=tzHere(),ho=offMin(hereTz,now);
+  CLOCKS.forEach(k=>{
+    k.t.textContent=fmtT(k.tz,now,{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+    k.dt.textContent=fmtT(k.tz,now,{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+    const om=offMin(k.tz,now);
+    k.of.textContent=`${cityOf(k.tz)}${MULTITZ.includes(k.c)?" (plusieurs fuseaux)":""} · ${fmtOff(om)}${k.me?"":" · "+fmtDiff(om-ho)}`;
+  });
+  const day=todayIn(hereTz);if(day!==lastDay){lastDay=day;if(typeof renderLetter==="function"&&CUR)renderLetter()}
+}
+setInterval(tick,1000);
+function renderHere(){
+  const H=residence();
+  $("#hereInfo").textContent=state.gps?(GPSMSG||"Détecté par le GPS de ton téléphone. La position reste sur ton appareil et n'est envoyée nulle part."):state.auto
+    ?(DET.cc?`Détecté grâce au fuseau horaire de ton téléphone (${DET.tz}). Aucune position GPS n'est utilisée. Si l'heure de ton téléphone n'a pas changé à l'arrivée, choisis le pays à la main.`:`Fuseau horaire non reconnu (${DET.tz||"inconnu"}) : choisis le pays à la main.`)
+    :"Choisi à la main. Coche « Détection automatique » pour suivre ton téléphone.";
+  const A=$("#arrival");
+  let msg="";
+  if(H===state.d&&H!==state.o)msg=`Tu es arrivé·e : ${nm(H)}. L'onglet « Sur place » affiche l'ambassade de ton pays, les démarches d'arrivée, les urgences et les services autour de toi.`;
+  else if(H!==state.o)msg=`Tu te trouves actuellement : ${nm(H)}. Les audiences et les adresses tiennent compte de ce pays.`;
+  if(hereMsg)msg=hereMsg+" "+msg;
+  A.textContent=msg;A.hidden=!msg;
+}
+let CUR=null;
+function renderAll(keepReach){
+  CUR=guide();
+  if(!state.tab)state.tab="visa";
+  renderHere();renderClocks();
+  renderVerdict(CUR.r);renderTabs();
+  const isVisa=state.tab==="visa";
+  $("#guidePane").hidden=!isVisa;$("#resPane").hidden=isVisa;
+  renderMotifs(isVisa?CUR.motifs:null);
+  if(isVisa){renderSteps(CUR.g)}else{renderResources()}
+  renderProgress(CUR.g);
+  if(!keepReach)renderReach();
+  renderLetter();renderChips();
+}
+
+/* ---------- Checklist copy / reset ---------- */
+function checklistText(){
+  const g=CUR.g,done=checks[key()]||{};
+  let out=`Dossier visa : ${nm(state.o)} → ${nm(state.d)} (${LABEL[CUR.r.k]}${CUR.motifs?", "+g.label:""})\n`;
+  g.steps.forEach((st,i)=>{out+=`\n${i+1}. ${st.t}\n`;st.c.forEach((it,j)=>{out+=`  [${done[i+"_"+j]?"x":" "}] ${it}\n`})});
+  return out;
+}
+function copy(text,msgEl,ok){
+  const fail=()=>{msgEl.textContent="Copie impossible ici : sélectionne le texte et copie-le."};
+  try{navigator.clipboard.writeText(text).then(()=>{msgEl.textContent=ok},fail)}catch(e){fail()}
+}
+$("#copyList").onclick=()=>copy(checklistText(),$("#copyMsg"),"Checklist copiée. Colle-la dans WhatsApp ou tes notes.");
+let resetArmed=false;
+$("#resetList").onclick=()=>{
+  if(!resetArmed){resetArmed=true;$("#resetList").textContent="Confirmer ?";setTimeout(()=>{resetArmed=false;$("#resetList").textContent="Tout décocher"},3000);return}
+  resetArmed=false;$("#resetList").textContent="Tout décocher";delete checks[key()];store.set("dv2_checks",checks);renderAll(true);$("#copyMsg").textContent="Checklist remise à zéro pour ce trajet.";
+};
+
+/* ---------- Letter ---------- */
+const F=["nom","job","emp","ville","dep","ret","but","hote","lien"];
+let form=store.get("dv_form",{});
+F.forEach(k=>{const el=$("#f_"+k);if(form[k])el.value=form[k];el.oninput=()=>{form[k]=el.value;store.set("dv_form",form);renderLetter()}});
+function fd(v){if(!v)return"[date]";const [y,m,d]=v.split("-");return `${d}/${m}/${y}`}
+function renderLetter(){
+  const v=k=>(form[k]||"").trim();
+  const ville=v("ville")||(state.o==="TG"?"Lomé":"[ville]");
+  const txt=`${v("nom")||"[Ton nom complet]"}
+${v("job")||"[Profession]"}${v("emp")?", "+v("emp"):""}
+${ville}, ${nm(state.o)}
+
+Fait à ${ville}, le ${todayIn(tzHere())}
+
+À l'attention de la section consulaire
+
+Objet : demande de visa (destination : ${nm(state.d)})
+
+Madame, Monsieur,
+
+Je sollicite un visa de court séjour (destination : ${nm(state.d)}) du ${fd(v("dep"))} au ${fd(v("ret"))}. L'objet de ce voyage est de ${v("but")||"[but précis du voyage]"}.
+
+Pendant mon séjour, je serai hébergé(e) : ${v("hote")||"[hôtel ou hôte, avec adresse]"}. Je prends en charge l'ensemble des frais de ce voyage, comme le montrent les justificatifs joints.
+
+Je suis ${(v("job")||"[profession]").toLowerCase()}${v("emp")?" chez "+v("emp"):""} à ${ville}. Mon retour est assuré par ${v("lien")||"[tes attaches : emploi, entreprise, famille, biens]"}.
+
+Vous trouverez ci-joint les pièces demandées. Je reste à votre disposition pour tout complément.
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+${v("nom")||"[Signature]"}`;
+  $("#letter").textContent=txt;
+}
+$("#copyLetter").onclick=()=>copy($("#letter").textContent,$("#copyMsg"),"Lettre copiée.");
+
+/* ---------- Assistant ---------- */
+const PRESETS=["Vérifie si mon dossier est complet","Quelles erreurs font refuser ce visa ?","Améliore ma lettre de motivation","Combien de temps avant le départ dois-je commencer ?"];
+function renderChips(){const box=$("#aiChips");box.textContent="";PRESETS.forEach(p=>{const b=document.createElement("button");b.className="chip";b.type="button";b.textContent=p;b.onclick=()=>{$("#aiQ").value=p;ask()};box.append(b)})}
+let sample=null,ctl=null;
+(async()=>{try{sample=window.claude?await window.claude.use("sample"):null}catch(e){sample=null}
+  if(!sample){$("#aiPanel").hidden=true}else if(state.tab&&state.tab!=="visa"){renderAll(true)}})();
+function context(){
+  const g=CUR.g,done=checks[key()]||{};
+  const have=[],miss=[];
+  g.steps.forEach((st,i)=>st.c.forEach((it,j)=>(done[i+"_"+j]?have:miss).push(it)));
+  return `Date et heure locales : ${fmtT(tzHere(),new Date(),{weekday:"long",day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"})} (${tzHere()}).
+Pays où se trouve la personne : ${nm(residence())}.
+Nationalité (passeport) : ${nm(state.o)}.
+Destination : ${nm(state.d)}.
+Exigence pour un court séjour selon l'application : ${LABEL[CUR.r.k]}${CUR.r.days?" ("+CUR.r.days+" jours)":""}.
+${CUR.r.note==="uspart"?"Attention : restriction américaine en vigueur depuis le 1er janvier 2026 (B-1/B-2, F, M, J et immigrant suspendus pour cette nationalité, exceptions limitées).\n":""}${CUR.r.note==="togo"?"Togo : exemption de visa pour les Africains depuis le 18 mai 2026, 30 jours, déclaration sur voyage.gouv.tg 24 h avant.\n":""}Motif : ${CUR.motifs?g.label:"non précisé"}.
+Situation : ${g.where}
+Étapes : ${g.steps.map((s,i)=>(i+1)+". "+s.t).join(" | ")}
+Déjà prêt : ${have.join(" ; ")||"rien"}
+Pas encore prêt : ${miss.join(" ; ")||"rien"}
+Lettre actuelle :
+${$("#letter").textContent}`;
+}
+async function ask(){
+  const q=$("#aiQ").value.trim();if(!q||!sample)return;
+  ctl=new AbortController();
+  const out=$("#aiOut");out.hidden=false;out.textContent="Réflexion en cours…";$("#aiNote").textContent="";
+  $("#aiAsk").disabled=true;$("#aiStop").hidden=false;
+  const prompt=`Tu aides une personne à préparer un dossier de visa. Réponds en français simple, en phrases courtes, avec des étapes concrètes. N'invente jamais de montant, de délai, d'adresse ou de lien : si tu n'es pas sûr, dis-le et renvoie vers le site officiel du pays de destination. Rappelle de se méfier des intermédiaires qui promettent un visa garanti. Texte simple, listes avec des tirets, pas de titres.
+
+${context()}
+
+Question : ${q}`;
+  try{
+    const {truncated}=await sample(prompt,{signal:ctl.signal,cache:false,onText:({text})=>{out.textContent=text}});
+    if(truncated)$("#aiNote").textContent="Réponse coupée : pose une question plus précise.";
+  }catch(e){
+    out.textContent=e.text??"";
+    const msg={not_granted:"L'assistant n'a pas été autorisé pour cette page.",sampling_disabled:"L'assistant n'est pas disponible pour ce compte.",rate_limited:"Trop de questions d'un coup. Réessaie dans quelques minutes.",session_expired:"Reconnecte-toi à Claude puis réessaie.",refused:"L'assistant n'a pas pu répondre à cette question. Reformule-la."}[e.code];
+    if(e.code==="not_granted"||e.code==="sampling_disabled"){$("#aiPanel").hidden=true}
+    if(e.code!=="cancelled")$("#aiNote").textContent=msg||"La réponse a été interrompue. Réessaie.";
+    if(!out.textContent)out.hidden=true;
+  }finally{$("#aiAsk").disabled=false;$("#aiStop").hidden=true}
+}
+$("#aiAsk").onclick=ask;
+$("#aiStop").onclick=()=>ctl&&ctl.abort();
+
+/* ---------- GPS (public site only: blocked inside Claude) ---------- */
+let BORDERS=null,WATCH=null,GPSMSG="";
+function loadBorders(){if(BORDERS)return Promise.resolve(BORDERS);return fetch("data/countries.geo.json").then(r=>{if(!r.ok)throw new Error("borders");return r.json()}).then(fc=>{BORDERS=fc.features.map(f=>{const polys=f.geometry.type==="Polygon"?[f.geometry.coordinates]:f.geometry.coordinates;let x0=180,y0=90,x1=-180,y1=-90;polys.forEach(p=>p[0].forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}));return {id:f.id,polys,bb:[x0,y0,x1,y1]}});return BORDERS})}
+function inRing(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const [xi,yi]=r[i],[xj,yj]=r[j];if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))ins=!ins}return ins}
+function countryAtRaw(lon,lat){for(const c of BORDERS){const [x0,y0,x1,y1]=c.bb;if(lon<x0||lon>x1||lat<y0||lat>y1)continue;for(const p of c.polys){if(inRing(lon,lat,p[0])&&!p.slice(1).some(h=>inRing(lon,lat,h)))return c.id}}return null}
+function distToCountryDeg(lon,lat,id){const c=BORDERS.find(b=>b.id===id);if(!c)return Infinity;const k=Math.cos(lat*Math.PI/180);let best=Infinity;
+  c.polys.forEach(p=>p.forEach(r=>{for(let i=0,j=r.length-1;i<r.length;j=i++){const ax=(r[j][0]-lon)*k,ay=r[j][1]-lat,bx=(r[i][0]-lon)*k,by=r[i][1]-lat;const dx=bx-ax,dy=by-ay;const L=dx*dx+dy*dy;let t=L?-(ax*dx+ay*dy)/L:0;t=Math.max(0,Math.min(1,t));const ex=ax+t*dx,ey=ay+t*dy;best=Math.min(best,Math.hypot(ex,ey))}}));return best}
+function countryAt(lon,lat){
+  const g=countryAtRaw(lon,lat),tzc=detectHere().cc;
+  // Borders are simplified: near a border, trust the phone's time zone if it points to the neighbour.
+  if(tzc&&tzc!==g&&distToCountryDeg(lon,lat,tzc)<0.45)return tzc;
+  return g;
+}
+function stopGps(){if(WATCH!==null){navigator.geolocation.clearWatch(WATCH);WATCH=null}GPSMSG=""}
+function onPos(pos){loadBorders().then(()=>{const cc=countryAt(pos.coords.longitude,pos.coords.latitude);
+  if(!cc){GPSMSG="GPS : pays non reconnu à cette position (zone frontalière, mer ou petit territoire). Choisis le pays à la main.";renderHere();return}
+  GPSMSG=`Détecté par le GPS de ton téléphone (précision ${Math.round(pos.coords.accuracy)} m). La position reste sur ton appareil.`;
+  if(cc!==state.here){state.here=cc;hereMsg=`Position GPS mise à jour : ${nm(cc)}.`;if(cc===state.d&&cc!==state.o)state.tab="surplace";save();$("#here").value=cc;renderAll()}else renderHere();
+}).catch(()=>{GPSMSG="Frontières des pays indisponibles : vérifie ta connexion.";renderHere()})}
+function onGpsErr(e){state.gps=false;save();stopGps();GPSMSG="";$("#hereInfo").textContent=e&&e.code===1?"Accès à la position refusé. Tu peux l'autoriser dans les réglages du navigateur, ou choisir le pays à la main.":"Position GPS indisponible pour le moment.";}
+function startGps(){state.gps=true;state.auto=false;$("#autoHere").checked=false;save();stopGps();WATCH=navigator.geolocation.watchPosition(onPos,onGpsErr,{enableHighAccuracy:false,maximumAge:600000,timeout:30000})}
+(function(){
+  const canGps=!window.claude&&window.isSecureContext&&"geolocation" in navigator;
+  const b=$("#gpsBtn");b.hidden=!canGps;if(!canGps){state.gps=false;return}
+  b.onclick=startGps;
+  if(state.gps){try{navigator.permissions.query({name:"geolocation"}).then(p=>{if(p.state==="granted")startGps();else state.gps=false}).catch(()=>{state.gps=false})}catch(e){state.gps=false}}
+})();
+
+/* ---------- Data dates ---------- */
+(function(){
+  const meta=window.META||{visa:"17 February 2026",embassies:"2024-08-30",airports:"2026-10-08",built:"2026-10-08"};
+  const fr=v=>{const d=new Date(v);return isNaN(d)?v:d.toLocaleDateString("fr-FR",{day:"2-digit",month:"2-digit",year:"numeric"})};
+  const frl=v=>{const d=new Date(v);return isNaN(d)?v:d.toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"})};
+  $("#dVisa").textContent=fr(meta.visa);$("#dBuilt").textContent=fr(meta.built);
+  document.querySelectorAll("[data-date]").forEach(el=>{const k=el.getAttribute("data-date");if(meta[k])el.textContent=frl(meta[k])});
+})();
+
+fillSelects();
+renderAll();
+</script>
+<script>
+(async function(){
+  const boot=document.getElementById("boot");
+  const files=["data/visa.json","data/embassies.json","data/airports.json","data/tz.json","data/emergency.json","data/meta.json"];
+  try{
+    const [v,e,a,t,em,meta]=await Promise.all(files.map(u=>fetch(u).then(r=>{if(!r.ok)throw new Error(u);return r.json()})));
+    window.DEST=v.dest;window.PASS=v.pass;window.M=v.m;
+    window.EMBDB=e;window.AIRDB=a;window.TZ2CC=t.tz2cc;window.CC2TZ=t.cc2tz;window.MULTITZ=t.multi;
+    window.EMERGDB=em;window.META=meta;
+    const s=document.createElement("script");s.textContent=document.getElementById("app-src").textContent;
+    document.body.append(s);boot.remove();
+  }catch(err){
+    boot.textContent="Impossible de charger les données. Vérifie ta connexion, puis recharge la page.";
+  }
+  if("serviceWorker" in navigator){try{navigator.serviceWorker.register("sw.js")}catch(e){}}
+})();
+</script>
+</body>
+</html>
