@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rebuild the data files used by Mon Dossier Voyage.
+"""Rebuild the data files used by Mon Dossier Voyage pour 199 pays.
 
 Usage:
   python scripts/build_data.py --visa PATH --embassies PATH --airports PATH [--zoneinfo /usr/share/zoneinfo] [--out data]

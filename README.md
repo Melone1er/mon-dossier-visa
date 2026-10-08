@@ -1,6 +1,6 @@
-# Mon Dossier Voyage
+# Mon Dossier Voyage pour 199 pays
 
-Application web gratuite pour préparer un voyage à l'étranger :
+Application web pour préparer un voyage à l'étranger :
 
 - vérifier s'il faut un visa entre 199 nationalités et 199 destinations ;
 - suivre les démarches pas à pas, avec la liste des papiers et où les obtenir ;

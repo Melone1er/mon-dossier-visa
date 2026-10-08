@@ -1,4 +1,4 @@
-// Mon Dossier Voyage: offline support.
+// Mon Dossier Voyage pour 199 pays: offline support.
 // Pages and data are served from the network when possible (so updates show up at once),
 // and from the cache when the phone is offline.
 const CACHE = "mdv-v2";
