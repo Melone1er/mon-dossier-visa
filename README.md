@@ -1,13 +1,13 @@
 # Mon Dossier Voyage pour 199 pays
 
-Application web pour préparer un voyage à l'étranger :
+Application web pour préparer un voyage à l'étranger. Ce dépôt publie la **version gratuite** :
 
 - vérifier s'il faut un visa entre 199 nationalités et 199 destinations ;
-- suivre les démarches pas à pas, avec la liste des papiers et où les obtenir ;
-- trouver l'ambassade ou le consulat compétent, parmi 10 000 représentations dans le monde ;
+- voir l'heure et la date du pays de départ et du pays d'arrivée ;
 - comparer les vols depuis l'aéroport le plus proche ;
-- une fois arrivé, retrouver l'ambassade de son pays, les démarches d'arrivée et les numéros d'urgence ;
 - installer le site comme une application sur son téléphone, utilisable hors connexion.
+
+Les guides détaillés, les papiers, les ambassades, les pays sans visa, la lettre de motivation et l'aide sur WhatsApp sont réservés à l'espace Agence, qui n'est pas hébergé ici. Le dossier `agence/` ne contient qu'une page d'attente.
 
 ## Mettre le site en ligne (GitHub Pages)
 
@@ -53,7 +53,8 @@ Relis-les une fois par mois. `data/emergency.json` (numéros d'urgence) et `data
 
 | Fichier | Rôle |
 | --- | --- |
-| `index.html` | L'application |
+| `index.html` | L'application, version gratuite |
+| `agence/index.html` | Page d'attente de l'espace Agence |
 | `data/*.json` | Données : visas, ambassades, aéroports, fuseaux horaires, urgences, frontières |
 | `sw.js`, `manifest.webmanifest`, `icons/` | Installation sur téléphone et fonctionnement hors connexion |
 | `mentions-legales.html`, `confidentialite.html` | Pages légales |

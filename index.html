@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Faut-il un visa ? Vérifie les exigences entre 199 pays, prépare ton dossier pas à pas, trouve les ambassades, les vols et les démarches à l'arrivée.">
+<meta name="description" content="Faut-il un visa ? Vérifie les exigences entre 199 pays, prépare ton dossier, trouve les ambassades, les vols et les démarches à l'arrivée.">
 <meta name="theme-color" content="#0f6b5c">
 <meta property="og:title" content="Mon Dossier Voyage pour 199 pays">
 <meta property="og:description" content="Visa, ambassades, papiers, vols et démarches d'arrivée pour 199 pays.">
@@ -154,6 +154,18 @@ select.mid-select{font:600 16px var(--body);color:var(--ink);background:var(--bg
 .fl-grid label{display:grid;gap:3px;font-size:13px;font-weight:600;color:var(--muted)}
 .fl-grid select,.fl-grid input{font:16px var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:7px;padding:8px 10px;width:100%}
 .fl-notes{display:grid;gap:8px}
+.price-box{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.price{font-size:18px}.price b{font:800 30px var(--display);color:var(--accent)}
+.price-list{margin:0;padding-left:20px;display:grid;gap:2px}
+.community{margin:20px 0}
+.comm-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;align-items:baseline}
+.visits{font-size:14px;color:var(--muted)}.visits b{color:var(--ink)}
+.testis{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.testi{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:8px;align-content:start}
+.testi blockquote{margin:0;white-space:pre-line;overflow-wrap:anywhere}
+.testi figcaption{font-size:14px;color:var(--muted)}.testi figcaption b{color:var(--ink)}
+a.testi-link{justify-self:start;color:var(--accent);font-weight:700}
+a.cta-link{justify-self:start;display:inline-block;background:var(--accent);color:var(--surface);font-weight:700;padding:11px 18px;border-radius:8px;text-decoration:none}
 .about{background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--r);padding:16px 18px;display:grid;gap:10px}
 .about-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .about .eyebrow{color:var(--accent)}
@@ -240,7 +252,7 @@ select.mid-select{font:600 16px var(--body);color:var(--ink);background:var(--bg
     <section class="res" id="resPane" hidden></section>
 
     <aside>
-      <div class="panel">
+      <div class="panel" id="progressPanel">
         <span class="eyebrow">Ton avancement</span>
         <div class="row" style="align-items:baseline;justify-content:space-between"><span class="big" id="pct">0 %</span><span class="muted" id="count"></span></div>
         <div class="bar"><span id="barfill"></span></div>
@@ -251,13 +263,13 @@ select.mid-select{font:600 16px var(--body);color:var(--ink);background:var(--bg
         <p class="muted" id="copyMsg" aria-live="polite"></p>
       </div>
 
-      <div class="panel">
+      <div class="panel" id="reachPanel">
         <span class="eyebrow" id="reachTitle">Où aller avec ce passeport</span>
         <div class="reach" id="reach"></div>
         <details><summary>Voir les pays sans visa ou visa à l'arrivée</summary><ul id="reachList"></ul></details>
       </div>
 
-      <div class="panel">
+      <div class="panel" id="letterPanel">
         <span class="eyebrow">Lettre de motivation du voyage</span>
         <p class="muted">Remplis, la lettre se met à jour. Relis-la et adapte-la avant de l'imprimer et de la signer.</p>
         <div class="form">
@@ -294,6 +306,16 @@ select.mid-select{font:600 16px var(--body);color:var(--ink);background:var(--bg
     </aside>
   </div>
 
+  <section class="panel community" id="community" aria-labelledby="commTitle" hidden>
+    <div class="comm-head">
+      <span class="eyebrow" id="commTitle">Témoignages de voyageurs</span>
+      <span class="visits" id="visits" hidden></span>
+    </div>
+    <div class="testis" id="testis"></div>
+    <p class="muted" id="testiEmpty" hidden>Aucun témoignage publié pour l'instant. Les avis de nos clients apparaîtront ici après relecture.</p>
+    <a class="testi-link" id="testiLink" href="#">Tu as utilisé l'espace Agence ? Laisse ton témoignage</a>
+  </section>
+
   <footer>
     <p><a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></p>
     <p><strong>Sources :</strong> exigences de visa entre 199 pays issues du jeu de données ouvert Passport Index (mise à jour du <span data-date="visa">17 février 2026</span>), corrigées le 8 octobre 2026 pour les changements vérifiés depuis : exemption de visa du Togo pour les ressortissants africains (18 mai 2026) et restrictions américaines (proclamations de juin et décembre 2025).</p>
@@ -303,8 +325,15 @@ select.mid-select{font:600 16px var(--body);color:var(--ink);background:var(--bg
   </footer>
 </div>
 
+<script>window.MDV_EDITION="free";window.MDV_AGENCE_URL=window.MDV_AGENCE_URL||"agence/";</script>
 <script id="app-src" type="text/plain">
 
+
+/* ---------- Edition: full (default), free, or agence ---------- */
+const EDITION=window.MDV_EDITION||"full";
+const FREE=EDITION==="free";
+const AGENCE_URL=window.MDV_AGENCE_URL||"agence/";
+const DATA_URL=f=>window.MDV_DATA_URL?window.MDV_DATA_URL(f):"data/"+f;
 
 /* ---------- Country names ---------- */
 let DN=null;try{DN=new Intl.DisplayNames(["fr"],{type:"region"})}catch(e){}
@@ -848,7 +877,9 @@ function onSiteCards(){
   [["Pharmacie","pharmacie"],["Hôpital ou urgences","hôpital urgences"],["Commissariat de police","police"],["Transfert d'argent","transfert d'argent Western Union MoneyGram"],["Mairie / services municipaux","mairie"]].forEach(([t,q])=>L.push({t:`${t} près de toi`,u:M_(q),d:"La carte s'ouvre centrée sur ta position si tu l'autorises dans l'application Cartes.",k:"m"}));
   return L;
 }const TABS=[["visa","Démarches visa"],["papiers","Papiers"],["rdv","Audiences"],["fac","Facilités"],["prog","Programmes"],["emploi","Offres d'emploi"],["heberg","Hébergement"],["vols","Vols"],["surplace","Sur place"]];
+const TABS_SHOWN=FREE?[["agence","Ce que tu obtiens"],["vols","Vols"]]:TABS;
 const TAB_INTRO={
+  agence:"Tout ce que l'accès complet te donne pour ce trajet.",
   vols:"Compare les vols entre l'aéroport le plus proche de toi et ta destination, aux prix du jour.",
   surplace:"Une fois arrivé·e : l'ambassade de ton pays, les démarches d'arrivée, les urgences et les services autour de toi. Se met à jour selon le pays où tu te trouves.",
   papiers:"Chaque pièce de ton dossier et où l'obtenir, plus les centres d'examens de langue.",
@@ -898,11 +929,11 @@ function resources(tab){
   L.push(R_(`Rechercher sur le web (${nm(d)})`,"https://www.google.com/search?q="+encodeURIComponent(SEARCHQ[tab](d,o)),"Recherche web ciblée. Privilégie les sites en .gov ou ceux des ambassades.","w"));
   return L;
 }
-function countFor(tab){if(tab==="visa"||tab==="vols")return null;const n=resources(tab).filter(x=>x.k!=="w").length+(tab==="fac"?facts(state.o,state.d,CUR.r).length:0);return n}
+function countFor(tab){if(tab==="visa"||tab==="vols"||tab==="agence")return null;const n=resources(tab).filter(x=>x.k!=="w").length+(tab==="fac"?facts(state.o,state.d,CUR.r).length:0);return n}
 function renderTabs(){
   $("#spaceTitle").textContent=`Espace pays · ${nm(state.d)}`;
   const box=$("#tabs");box.textContent="";
-  TABS.forEach(([k,l])=>{
+  TABS_SHOWN.forEach(([k,l])=>{
     const b=document.createElement("button");b.className="tab";b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",state.tab===k);
     b.textContent=l;if(k==="vols")b.classList.add("tab-vols");const n=countFor(k);if(n!==null){const s=document.createElement("span");s.className="n";s.textContent=n;b.append(s)}
     b.onclick=()=>{state.tab=k;save();renderAll(true)};
@@ -985,7 +1016,7 @@ function card(x){
 function renderResources(){
   const tab=state.tab,P=$("#resPane");P.textContent="";
   const head=document.createElement("div");head.className="res-head";
-  const h=document.createElement("h2");h.textContent=`${TABS.find(t=>t[0]===tab)[1]} · ${nm(tab==="surplace"?residence():state.d)}`;
+  const h=document.createElement("h2");h.textContent=`${(TABS_SHOWN.find(t=>t[0]===tab)||TABS.find(t=>t[0]===tab))[1]} · ${nm(tab==="surplace"?residence():state.d)}`;
   const p=document.createElement("p");p.className="where";p.textContent=TAB_INTRO[tab];
   head.append(h,p);
   if(tab==="rdv"&&residence()!=="TG"&&residence()!==state.d){const n=document.createElement("p");n.className="muted";n.textContent="Les rendez-vous dépendent du pays où tu résides. Les adresses détaillées sont vérifiées pour Lomé ; ailleurs, la carte et la recherche te donnent les adresses à jour.";head.append(n)}
@@ -993,6 +1024,7 @@ function renderResources(){
     {const n=document.createElement("p");n.className="note";n.textContent="Une offre d'emploi ne suffit pas pour travailler : il faut en général un contrat et un visa de travail. Ne paie jamais pour obtenir une offre ou un contrat.";head.append(n)}
   if(tab==="heberg"){const n=document.createElement("p");n.className="note scam";n.textContent="Ne verse jamais d'argent pour un logement que personne n'a pu visiter, surtout par transfert d'argent. C'est l'arnaque la plus fréquente.";head.append(n)}
   P.append(head);
+  if(tab==="agence"){renderPitch(P);return}
   if(tab==="vols"){renderFlights(P);return}
   if(tab==="fac"){
     const ff=facts(state.o,state.d,CUR.r);
@@ -1045,15 +1077,43 @@ function renderHere(){
     :"Choisi à la main. Coche « Détection automatique » pour suivre ton téléphone.";
   const A=$("#arrival");
   let msg="";
-  if(H===state.d&&H!==state.o)msg=`Tu es arrivé·e : ${nm(H)}. L'onglet « Sur place » affiche l'ambassade de ton pays, les démarches d'arrivée, les urgences et les services autour de toi.`;
+  if(H===state.d&&H!==state.o)msg=FREE?`Tu es arrivé·e : ${nm(H)}. L'accès complet t'indique l'ambassade de ton pays, les démarches d'arrivée et les urgences.`:`Tu es arrivé·e : ${nm(H)}. L'onglet « Sur place » affiche l'ambassade de ton pays, les démarches d'arrivée, les urgences et les services autour de toi.`;
   else if(H!==state.o)msg=`Tu te trouves actuellement : ${nm(H)}. Les audiences et les adresses tiennent compte de ce pays.`;
   if(hereMsg)msg=hereMsg+" "+msg;
   A.textContent=msg;A.hidden=!msg;
 }
+function renderPitch(P){
+  const g=CUR.g,items=g.steps.reduce((n,st)=>n+st.c.length,0),r=CUR.r;
+  const motifs=CUR.motifs?Object.keys(CUR.motifs).length:0;
+  const F=[
+    ["Guide pas à pas",g.steps.length?`${g.steps.length} étapes détaillées pour ce trajet${motifs>1?`, en ${motifs} versions selon le motif (${Object.values(CUR.motifs).map(m=>m.label.split(" (")[0]).join(", ")})`:""}, avec frais et délais.`:"Les démarches détaillées pour ce trajet."],
+    ["Liste des papiers",items?`${items} pièces à réunir, à cocher au fur et à mesure, avec l'endroit où obtenir chacune (certificats, examens de langue, contrats…).`:"Chaque pièce à réunir et où l'obtenir."],
+    ["Ambassade et rendez-vous","La représentation compétente pour ton pays de séjour : adresse, téléphone, site et prise de rendez-vous."],
+    ["Pays sans visa","La liste de tous les pays où ton passeport entre sans visa ou avec un visa à l'arrivée, avec la durée de séjour autorisée."],
+    ["Lettre de motivation","Rédigée automatiquement avec tes informations, prête à imprimer et à signer."],
+    ["Programmes, emploi, logement","Bourses, visas de travail, services publics de l'emploi et logement étudiant du pays."],
+    ["Sur place","L'ambassade de ton pays, les démarches des premiers jours et les numéros d'urgence, mis à jour selon le pays où tu te trouves."],
+    ["Aide sur WhatsApp","Une réponse à tes questions sur ton dossier pendant toute la durée de ton accès."]
+  ];
+  const c=document.createElement("div");c.className="cards";
+  F.forEach(([t,d])=>{const x=document.createElement("div");x.className="card";const b=document.createElement("span");b.className="badge b-off";b.textContent="Accès complet";const tt=document.createElement("span");tt.className="ct";tt.textContent=t;const dd=document.createElement("span");dd.className="cd";dd.textContent=d;x.append(b,tt,dd);c.append(x)});
+  P.append(c);
+  const box=document.createElement("div");box.className="res-head price-box";
+  box.innerHTML=`<span class="eyebrow">Mon Dossier Voyage · Agence</span>
+    <p class="price"><b>5 000 FCFA</b> les 14 jours <span class="muted">(environ 9 $)</span></p>
+    <ul class="price-list"><li>Paiement par Flooz, Mixx by Yas ou carte Visa</li><li>Accès immédiat après le paiement</li><li>Sans engagement : tu renouvelles seulement si tu en as besoin</li></ul>`;
+  const a=document.createElement("a");a.className="btn cta-link";a.href=AGENCE_URL;a.textContent="Accéder à l'agence";
+  const n=document.createElement("p");n.className="muted";n.textContent="L'abonnement paie l'information et l'accompagnement, pas le visa : la décision appartient toujours à l'ambassade.";
+  box.append(a,n);P.append(box);
+  if(r.note==="uspart"||r.k==="no"){const w=document.createElement("p");w.className="note scam";w.textContent="Attention : pour ce trajet, la délivrance des visas est actuellement suspendue ou très limitée. Vérifie ta situation avant de t'abonner.";P.append(w)}
+}
 let CUR=null;
 function renderAll(keepReach){
   CUR=guide();
-  if(!state.tab)state.tab="visa";
+  if(!state.tab)state.tab=FREE?"agence":"visa";
+  if(FREE&&!TABS_SHOWN.some(t=>t[0]===state.tab))state.tab="agence";
+  if(!FREE&&state.tab==="agence")state.tab="visa";
+  $("#progressPanel").hidden=FREE;$("#letterPanel").hidden=FREE;$("#reachPanel").hidden=FREE;
   renderHere();renderClocks();
   renderVerdict(CUR.r);renderTabs();
   const isVisa=state.tab==="visa";
@@ -1061,7 +1121,7 @@ function renderAll(keepReach){
   renderMotifs(isVisa?CUR.motifs:null);
   if(isVisa){renderSteps(CUR.g)}else{renderResources()}
   renderProgress(CUR.g);
-  if(!keepReach)renderReach();
+  if(!keepReach&&!FREE)renderReach();
   renderLetter();renderChips();
 }
 
@@ -1167,7 +1227,7 @@ $("#aiStop").onclick=()=>ctl&&ctl.abort();
 
 /* ---------- GPS (public site only: blocked inside Claude) ---------- */
 let BORDERS=null,WATCH=null,GPSMSG="";
-function loadBorders(){if(BORDERS)return Promise.resolve(BORDERS);return fetch("data/countries.geo.json").then(r=>{if(!r.ok)throw new Error("borders");return r.json()}).then(fc=>{BORDERS=fc.features.map(f=>{const polys=f.geometry.type==="Polygon"?[f.geometry.coordinates]:f.geometry.coordinates;let x0=180,y0=90,x1=-180,y1=-90;polys.forEach(p=>p[0].forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}));return {id:f.id,polys,bb:[x0,y0,x1,y1]}});return BORDERS})}
+function loadBorders(){if(BORDERS)return Promise.resolve(BORDERS);return fetch(DATA_URL("countries.geo.json")).then(r=>{if(!r.ok)throw new Error("borders");return r.json()}).then(fc=>{BORDERS=fc.features.map(f=>{const polys=f.geometry.type==="Polygon"?[f.geometry.coordinates]:f.geometry.coordinates;let x0=180,y0=90,x1=-180,y1=-90;polys.forEach(p=>p[0].forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}));return {id:f.id,polys,bb:[x0,y0,x1,y1]}});return BORDERS})}
 function inRing(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const [xi,yi]=r[i],[xj,yj]=r[j];if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))ins=!ins}return ins}
 function countryAtRaw(lon,lat){for(const c of BORDERS){const [x0,y0,x1,y1]=c.bb;if(lon<x0||lon>x1||lat<y0||lat>y1)continue;for(const p of c.polys){if(inRing(lon,lat,p[0])&&!p.slice(1).some(h=>inRing(lon,lat,h)))return c.id}}return null}
 function distToCountryDeg(lon,lat,id){const c=BORDERS.find(b=>b.id===id);if(!c)return Infinity;const k=Math.cos(lat*Math.PI/180);let best=Infinity;
@@ -1213,20 +1273,43 @@ function startGps(){state.gps=true;state.auto=false;$("#autoHere").checked=false
 
 fillSelects();
 renderAll();
+/* ---------- Visits and testimonials (only where the server part is installed) ---------- */
+(function(){
+  const API=window.MDV_API;if(!API)return;
+  const sec=$("#community");const fmt=n=>Number(n).toLocaleString("fr-FR");
+  $("#testiLink").href=API+"temoigner.php";
+  let seen=false;try{seen=sessionStorage.getItem("mdv_counted")==="1"}catch(e){}
+  fetch(API+"compteur.php",{method:seen?"GET":"POST",credentials:"same-origin"}).then(r=>r.ok?r.json():Promise.reject()).then(v=>{
+    if(typeof v.total!=="number")return;
+    try{sessionStorage.setItem("mdv_counted","1")}catch(e){}
+    const el=$("#visits");el.textContent="";const b=document.createElement("b");b.textContent=fmt(v.total);
+    el.append(b,` visite${v.total>1?"s":""} depuis le lancement · ${fmt(v.today)} aujourd'hui`);el.hidden=false;sec.hidden=false;
+  }).catch(()=>{});
+  fetch(API+"temoignages.php",{credentials:"same-origin"}).then(r=>r.ok?r.json():Promise.reject()).then(list=>{
+    if(!Array.isArray(list))return;
+    const box=$("#testis");box.textContent="";
+    list.forEach(t=>{const f=document.createElement("figure");f.className="testi";const q=document.createElement("blockquote");q.textContent=t.message;
+      const c=document.createElement("figcaption");const b=document.createElement("b");b.textContent=t.name;c.append(b,(t.route?" · "+t.route:"")+" · "+t.date);f.append(q,c);box.append(f)});
+    $("#testiEmpty").hidden=list.length>0;sec.hidden=false;
+  }).catch(()=>{});
+})();
 </script>
 <script>
 (async function(){
   const boot=document.getElementById("boot");
-  const files=["data/visa.json","data/embassies.json","data/airports.json","data/tz.json","data/emergency.json","data/meta.json"];
+  const url=window.MDV_DATA_URL||(f=>"data/"+f);
+  const want=["visa.json","tz.json","airports.json","meta.json"];
   try{
-    const [v,e,a,t,em,meta]=await Promise.all(files.map(u=>fetch(u).then(r=>{if(!r.ok)throw new Error(u);return r.json()})));
-    window.DEST=v.dest;window.PASS=v.pass;window.M=v.m;
-    window.EMBDB=e;window.AIRDB=a;window.TZ2CC=t.tz2cc;window.CC2TZ=t.cc2tz;window.MULTITZ=t.multi;
-    window.EMERGDB=em;window.META=meta;
+    const got=await Promise.all(want.map(f=>fetch(url(f),{credentials:"same-origin"}).then(r=>{if(r.status===401||r.status===403){location.href=window.MDV_LOGIN_URL||"connexion.php";throw new Error("auth")}if(!r.ok)throw new Error(f);return r.json()})));
+    const D={};want.forEach((f,i)=>D[f]=got[i]);
+    window.DEST=D["visa.json"].dest;window.PASS=D["visa.json"].pass;window.M=D["visa.json"].m;
+    window.TZ2CC=D["tz.json"].tz2cc;window.CC2TZ=D["tz.json"].cc2tz;window.MULTITZ=D["tz.json"].multi;
+    window.AIRDB=D["airports.json"];window.META=D["meta.json"];
+    window.EMBDB=D["embassies.json"]||{};window.EMERGDB=D["emergency.json"]||{};
     const s=document.createElement("script");s.textContent=document.getElementById("app-src").textContent;
     document.body.append(s);boot.remove();
   }catch(err){
-    boot.textContent="Impossible de charger les données. Vérifie ta connexion, puis recharge la page.";
+    if(err.message!=="auth")boot.textContent="Impossible de charger les données. Vérifie ta connexion, puis recharge la page.";
   }
   if("serviceWorker" in navigator){try{navigator.serviceWorker.register("sw.js")}catch(e){}}
 })();

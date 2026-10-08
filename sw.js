@@ -1,12 +1,12 @@
 // Mon Dossier Voyage pour 199 pays: offline support.
 // Pages and data are served from the network when possible (so updates show up at once),
 // and from the cache when the phone is offline.
-const CACHE = "mdv-v2";
+const CACHE = "mdv-v4";
 const CORE = [
   "./", "index.html", "mentions-legales.html", "confidentialite.html", "manifest.webmanifest",
   "icons/icon-192.png", "icons/icon-512.png",
-  "data/visa.json", "data/embassies.json", "data/airports.json", "data/tz.json",
-  "data/emergency.json", "data/meta.json", "data/countries.geo.json"
+  "data/visa.json", "data/airports.json", "data/tz.json",
+  "data/meta.json", "data/countries.geo.json"
 ];
 
 self.addEventListener("install", (event) => {
@@ -23,7 +23,10 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const req = event.request;
-  if (req.method !== "GET" || new URL(req.url).origin !== self.location.origin) return;
+  const url = new URL(req.url);
+  if (req.method !== "GET" || url.origin !== self.location.origin) return;
+  // The paid space (accounts, payments, private data) is never cached on the device.
+  if (url.pathname.includes("/agence/")) return;
   event.respondWith(
     fetch(req)
       .then((res) => {
